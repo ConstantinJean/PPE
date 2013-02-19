@@ -1,0 +1,7 @@
+parameters:
+#    musee_site.example.class: Musee\SiteBundle\Example
+
+services:
+#    musee_site.example:
+#        class: %musee_site.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
