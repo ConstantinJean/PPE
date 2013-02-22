@@ -11,11 +11,18 @@
 			 <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}" type="text/css" />
 		{% endblock %}
 	</head>
+	
+	
 	<body>
 		<div class="row-fluid">
-			<div class='well span6'>
+			<a href="{{path('musee_accueil') }}">Accueil</a>
+			<a href="{{path('musee_aPropos') }}">A Propos</a>
+			<a href="{{path('musee_contact') }}">Contact</a>
+			<a href="{{path('musee_infosPratiques') }}">Infos Pratiques</a>
 			
-			</div
 		</div>
+		{% block body %}
+		{% endblock %}
 	</body>
+	
 </html>

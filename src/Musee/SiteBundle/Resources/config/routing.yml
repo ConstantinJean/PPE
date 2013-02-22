@@ -5,3 +5,15 @@ musee_site_homepage:
 musee_accueil:
     pattern:  /
     defaults: { _controller: MuseeSiteBundle:Site:index }
+
+musee_aPropos:
+    pattern:  /apropos
+    defaults: { _controller: MuseeSiteBundle:Site:aPropos }
+
+musee_contact:
+    pattern: /contact
+    defaults: { _controller: MuseeSiteBundle:Site:contact }
+
+musee_infosPratiques:
+    pattern: /infosPratiques
+    defaults: { _controller: MuseeSiteBundle:Site:infosPratiques }
