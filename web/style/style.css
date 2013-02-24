@@ -1,0 +1,20 @@
+[class*="span"] {
+margin-bottom : 20px;
+margin-top: 20px;
+
+}
+
+#formulaire {
+   background-color:#CCC;
+   padding: 10px;
+}
+
+body
+{
+	background-color:  #8DA2C0;
+}
+
+#contact-img
+{
+	margin-top: 60px;
+}

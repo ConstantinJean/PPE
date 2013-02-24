@@ -9,19 +9,36 @@
 		
 		{% block stylesheets %}
 			 <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}" type="text/css" />
+			 <link rel="stylesheet" href="{{ asset('style/style.css') }}" type="text/css" />
 		{% endblock %}
 	</head>
-	
-	
 	<body>
-		<div class="row-fluid">
-			<a href="{{path('musee_accueil') }}">Accueil</a>
-			<a href="{{path('musee_aPropos') }}">A Propos</a>
-			<a href="{{path('musee_contact') }}">Contact</a>
-			<a href="{{path('musee_infosPratiques') }}">Infos Pratiques</a>
-			
+		<div id="header">
+			<img alt="Banner" title="Earth" src="{{ asset('style/banner.png') }}">
+			<nav id="nav" class="navbar navbar-inverse navbar-static-top" >
+				<div class="navbar-inner">
+					<div class="pull-left">
+						<a class="brand" href="#header">Kourou</a>
+					</div>
+				
+					<div class="container">
+						
+						<ul class="nav">
+							<li><a href="#header" class="scroll">Accueil</a></li>
+							<li><a href="#vad" class="scroll">Articles</a></li>
+							<li><a href="#hur" class="scroll">A propos</a></li>
+							<li><a href="{{ path('musee_infosPratiques')}}" class="scroll">Infos pratiques</a></li>
+							<li><a href="#f" target="_blank">Contact</a></li>
+						</ul>
+					</div>
+				</div>
+				
+			</nav>
 		</div>
+	
+	
 		{% block body %}
+			
 		{% endblock %}
 	</body>
 	
