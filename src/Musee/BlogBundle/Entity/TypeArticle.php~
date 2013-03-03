@@ -5,12 +5,12 @@ namespace Musee\BlogBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Image
+ * TypeArticle
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Musee\BlogBundle\Entity\ImageRepository")
+ * @ORM\Entity(repositoryClass="Musee\BlogBundle\Entity\TypeArticleRepository")
  */
-class Image
+class TypeArticle
 {
     /**
      * @var integer
@@ -24,9 +24,9 @@ class Image
     /**
      * @var string
      *
-     * @ORM\Column(name="URL", type="string", length=255)
+     * @ORM\Column(name="Intitule", type="string", length=255)
      */
-    private $URL;
+    private $Intitule;
 
 
     /**
@@ -43,7 +43,7 @@ class Image
      * Set Id
      *
      * @param integer $id
-     * @return Image
+     * @return TypeArticle
      */
     public function setId($id)
     {
@@ -53,25 +53,25 @@ class Image
     }
 
     /**
-     * Set URL
+     * Set Intitule
      *
-     * @param string $uRL
-     * @return Image
+     * @param string $intitule
+     * @return TypeArticle
      */
-    public function setURL($uRL)
+    public function setIntitule($intitule)
     {
-        $this->URL = $uRL;
+        $this->Intitule = $intitule;
     
         return $this;
     }
 
     /**
-     * Get URL
+     * Get Intitule
      *
      * @return string 
      */
-    public function getURL()
+    public function getIntitule()
     {
-        return $this->URL;
+        return $this->Intitule;
     }
 }

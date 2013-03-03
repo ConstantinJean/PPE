@@ -22,13 +22,6 @@ class TypeArticle
     private $id;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="Id", type="integer")
-     */
-    private $Id;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="Intitule", type="string", length=255)
