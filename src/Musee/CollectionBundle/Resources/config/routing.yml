@@ -1,0 +1,3 @@
+musee_collection_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: MuseeCollectionBundle:Default:index }

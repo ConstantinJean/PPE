@@ -1,0 +1,163 @@
+<?php
+
+namespace Musee\CollectionBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Objet
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Musee\CollectionBundle\Entity\ObjetRepository")
+ */
+class Objet
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=255)
+     */
+    private $nom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="exposition", type="boolean")
+     */
+    private $exposition;
+	
+	/**
+	 * @ORM\OneToOne(targetEntity="Musee\CollectionBundle\Entity\SalleStockage")
+	 * @ORM\JoinColumn(nullable=false)
+	 */
+	private $salleStockage;
+	
+	/**
+	 * @ORM\OneToOne(targetEntity="Musee\CollectionBundle\Entity\StatutObjet")
+	 */
+	private $statutObjet;
+	
+	/**
+	 * @ORM\OneToOne(targetEntity="Musee\CollectionBundle\Entity\TypeObjet", cascade={"persist"})
+	 */
+	private $typeObjet;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     * @return Objet
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+    
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string 
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Objet
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set exposition
+     *
+     * @param boolean $exposition
+     * @return Objet
+     */
+    public function setExposition($exposition)
+    {
+        $this->exposition = $exposition;
+    
+        return $this;
+    }
+
+    /**
+     * Get exposition
+     *
+     * @return boolean 
+     */
+    public function getExposition()
+    {
+        return $this->exposition;
+    }
+
+    /**
+     * Set salleStockage
+     *
+     * @param \Musee\CollectionBundle\Entity\SalleStockage $salleStockage
+     * @return Objet
+     */
+    public function setSalleStockage(\Musee\CollectionBundle\Entity\SalleStockage $salleStockage)
+    {
+        $this->salleStockage = $salleStockage;
+    
+        return $this;
+    }
+
+    /**
+     * Get salleStockage
+     *
+     * @return \Musee\CollectionBundle\Entity\SalleStockage 
+     */
+    public function getSalleStockage()
+    {
+        return $this->salleStockage;
+    }
+}

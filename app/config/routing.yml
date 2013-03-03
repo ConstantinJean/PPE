@@ -1,3 +1,7 @@
+musee_collection:
+    resource: "@MuseeCollectionBundle/Resources/config/routing.yml"
+    prefix:   /
+
 musee_blog:
     resource: "@MuseeBlogBundle/Resources/config/routing.yml"
     prefix:   /
