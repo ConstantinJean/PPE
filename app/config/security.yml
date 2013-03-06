@@ -9,8 +9,8 @@ security:
 
 
     role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_ADMIN:       [ROLE_CHERCHEUR, ROLE_ADHERENT]
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
         in_memory:
@@ -18,10 +18,8 @@ security:
                 users:
                     user:  { password: userpass, roles: [ 'ROLE_USER' ] }
                     admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
-
-        providers:
-            main:
-                id: fos_user.user_provider.username
+        main:
+            id: fos_user.user_provider.username
     firewalls:
         main:
             pattern:        ^/
@@ -63,3 +61,4 @@ security:
         # starting with the /_internal prefix to only localhost
         #- { path: ^/_internal/secure, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
         #- { path: ^/_internal/secure, roles: ROLE_NO_ACCESS }
+        - { path: ^/admin, roles: ROLE_ADMIN }
