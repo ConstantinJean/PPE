@@ -58,3 +58,9 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+# Fos_user Configuration
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class:    Sdz\UserBundle\Entity\User
