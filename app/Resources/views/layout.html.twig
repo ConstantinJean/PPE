@@ -21,7 +21,7 @@
 						<a class="brand" href="#header">Kourou</a>
 					</div>
 				
-					<div class="container">
+					<div class="container fluid">
 						
 						<ul class="nav">
 							<li><a href="{{ path('musee_accueil') }}">Accueil</a></li>
@@ -29,14 +29,24 @@
 							<li><a href="{{ path('musee_aPropos') }}">A propos</a></li>
 							<li><a href="{{ path('musee_infosPratiques') }}">Infos pratiques</a></li>
 							<li><a href="{{ path('musee_contact') }}">Contact</a></li>
+							<li><a href="{{ path('musee_contact') }}">Admin</a></li>
+								
+								
 						</ul>
+						<div class="pull-right">
+							{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+								<a href="{{ path('fos_user_security_logout') }}" class="btn btn-primary btn-small">Déconnexion</a>
+							{% else %}
+								<a href="{{ path('fos_user_security_login') }}" class="btn btn-primary btn-small">Connexion</a>
+							{% endif %}
+						</div>
 					</div>
 				</div>
 				
 			</nav>
 		</div>
 	
-	
+
 		{% block body %}
 			
 		{% endblock %}

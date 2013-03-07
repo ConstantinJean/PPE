@@ -5,7 +5,7 @@ jms_security_extra:
 security:
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
-        Sdz\UserBundle\Entity\User: sha512
+        Musee\UserBundle\Entity\User: sha512
 
 
     role_hierarchy:
@@ -30,7 +30,7 @@ security:
                 check_path: fos_user_security_check
             logout:
                 path:       fos_user_security_logout
-                target:     /blog
+                target:     /museeKourou
             remember_me:
                 key:        %secret%
 
