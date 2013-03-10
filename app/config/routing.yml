@@ -8,7 +8,7 @@ musee_collection:
 
 musee_blog:
     resource: "@MuseeBlogBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /article
 
 musee_site:
     resource: "@MuseeSiteBundle/Resources/config/routing.yml"
