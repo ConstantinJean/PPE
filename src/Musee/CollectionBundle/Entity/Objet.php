@@ -49,7 +49,7 @@ class Objet
 	private $salleStockage;
 	
 	/**
-	 * @ORM\OneToOne(targetEntity="Musee\CollectionBundle\Entity\StatutObjet")
+	 * @ORM\OneToOne(targetEntity="Musee\CollectionBundle\Entity\StatutObjet", cascade={"persist"})
 	 */
 	private $statutObjet;
 	
