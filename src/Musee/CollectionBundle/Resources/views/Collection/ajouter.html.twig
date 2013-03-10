@@ -1,0 +1,16 @@
+{# src/Musee/CollectionBundle/Resources/views/Collection/ajoute.html.twig #}
+
+{% extends "::layout.html.twig" %}
+{% block body %}
+
+<div class="well">
+  <form method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <input type="submit" class="btn btn-primary" />
+  </form>
+</div>
+
+<!--  Pour mettre un label à chaque input dur form :{{ form_label(form.name, 'Votre nom') }} -->
+{% endblock %}
+
+< {{ form_label(form.name, 'Votre nom') }}

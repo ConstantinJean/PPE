@@ -4,7 +4,7 @@ musee_user:
 
 musee_collection:
     resource: "@MuseeCollectionBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /collection
 
 musee_blog:
     resource: "@MuseeBlogBundle/Resources/config/routing.yml"
