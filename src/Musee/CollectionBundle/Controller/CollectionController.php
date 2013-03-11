@@ -38,7 +38,7 @@ class CollectionController extends Controller
 				$em -> persist($objet);
 				$em -> flush();
 			
-				return $this -> redirect($this->generateUrl('musee_accueil'));
+				return $this -> redirect($this->generateUrl('musee_collection_afficher_liste', array('page'=>1)));
 			}
 		}
 		
@@ -61,7 +61,7 @@ class CollectionController extends Controller
 				$em -> persist($objet);
 				$em -> flush();
 				
-				return $this -> redirect($this -> generateUrl('musee_accueil'));
+				return $this -> redirect($this -> generateUrl('musee_collection_afficher_liste', array('page'=>1)));
 			}
 		}
 		
@@ -90,7 +90,7 @@ class CollectionController extends Controller
 			//$this->get('session')->getFlashBag()->add('info', 'Article bien supprimé');
 
 			// Puis on redirige vers l'accueil
-			return $this->redirect($this->generateUrl('musee_accueil'));
+			return $this->redirect($this->generateUrl('musee_collection_afficher_liste', array('page'=>1)));
 		  }
 		}
 
