@@ -43,18 +43,18 @@ class Objet
     private $exposition;
 	
 	/**
-	 * @ORM\OneToOne(targetEntity="Musee\CollectionBundle\Entity\SalleStockage")
+	 * @ORM\ManyToOne(targetEntity="Musee\CollectionBundle\Entity\SalleStockage")
 	 * @ORM\JoinColumn(nullable=false)
 	 */
 	private $salleStockage;
 	
 	/**
-	 * @ORM\OneToOne(targetEntity="Musee\CollectionBundle\Entity\StatutObjet", cascade={"persist"})
+	 * @ORM\ManyToOne(targetEntity="Musee\CollectionBundle\Entity\StatutObjet", cascade={"persist"})
 	 */
 	private $statutObjet;
 	
 	/**
-	 * @ORM\OneToOne(targetEntity="Musee\CollectionBundle\Entity\TypeObjet", cascade={"persist"})
+	 * @ORM\ManyToOne(targetEntity="Musee\CollectionBundle\Entity\TypeObjet", cascade={"persist"})
 	 */
 	private $typeObjet;
 	
