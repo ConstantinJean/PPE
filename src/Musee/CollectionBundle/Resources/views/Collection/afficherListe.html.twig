@@ -24,6 +24,9 @@
 						{% endif %}	
 						</p>
 					</div>
+					<div class="pull-right">
+						<a class="btn btn-danger" href="{{ path('musee_collection_supprimer', {'id': objet.id}) }}">Supprimer</a>
+					</div>
 				</div>
 			
 			{% elseif loop.index is even %}
@@ -43,6 +46,9 @@
 							non
 						{% endif %}
 						</p>
+					</div>
+					<div class="pull-right">
+						<a class="btn btn-danger" href="{{ path('musee_collection_supprimer', {'id': objet.id}) }}">Supprimer</a>
 					</div>					
 				</div>
 			</div>

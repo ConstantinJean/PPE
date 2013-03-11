@@ -1,0 +1,29 @@
+{% extends "::layout.html.twig" %}
+  
+{% block title %}
+  Supprimer un objet - {{ parent() }}
+{% endblock %}
+ 
+{% block body %}
+ <div class="container-fluid" style="padding-top:5%;">
+  <div class="row-fluid">
+  <div class="offset4 span4">
+  <h2>Supprimer un objet</h2>
+  <hr />
+  <p>
+    Etes-vous certain de vouloir supprimer l'objet "{{ objet.nom }}" ?
+  </p>
+ 
+  {# On met l'id de l'objet dans la route de l'action du formulaire #}
+  <form action="{{ path('musee_collection_supprimer', {'id': objet.id}) }}" method="post">
+    <a href="{{ path('musee_collection_afficher_liste', {'page': 1}) }}" class="btn">
+      <i class="icon-chevron-left"></i>
+      Retour à la liste des objets
+    </a>
+    <input type="submit" value="Supprimer" class="btn btn-danger" />
+    {{ form_rest(form) }}
+  </form>
+  </div>
+  </div>
+ </div>
+{% endblock %}
