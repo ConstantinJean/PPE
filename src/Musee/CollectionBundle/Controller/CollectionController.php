@@ -61,7 +61,7 @@ class CollectionController extends Controller
 				$em -> persist($objet);
 				$em -> flush();
 				
-				return $this -> redirect($this -> generateUrl());
+				return $this -> redirect($this -> generateUrl('musee_accueil'));
 			}
 		}
 		
