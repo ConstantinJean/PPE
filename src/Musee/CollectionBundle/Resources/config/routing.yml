@@ -7,3 +7,7 @@ musee_collection_afficher_liste:
 musee_collection_ajouter:
     pattern:  /ajouter
     defaults: { _controller: MuseeCollectionBundle:Collection:ajouterObjet }
+
+musee_collection_supprimer:
+    pattern:  /supprimer/{id}
+    defaults: { _controller: MuseeCollectionBundle:Collection:supprimerObjet }
