@@ -66,6 +66,9 @@
 			<div class="offset5 span2">
 				<div class="pagination text-center">
 					<ul>
+						{% if nombrePage == 0 %}
+							{% set nombrePage = 1 %}
+						{% endif %}
 						{% for p in range(1, nombrePage) %}
 							<li {% if p == page %} class="active" {% endif %}>
 								<a href="{{ path('musee_collection_afficher_liste', {'page' : p}) }}">{{p}}</a>
