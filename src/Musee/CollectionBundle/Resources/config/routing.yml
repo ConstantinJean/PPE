@@ -1,3 +1,9 @@
+musee_collection_afficher_liste:
+    pattern:  /liste/{page}
+    defaults: { _controller: MuseeCollectionBundle:Collection:afficherListeObjet }
+    requirements:
+        annee:  \d
+
 musee_collection_ajouter:
     pattern:  /ajouter
     defaults: { _controller: MuseeCollectionBundle:Collection:ajouterObjet }

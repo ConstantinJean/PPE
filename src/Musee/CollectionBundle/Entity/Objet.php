@@ -57,6 +57,11 @@ class Objet
 	 * @ORM\OneToOne(targetEntity="Musee\CollectionBundle\Entity\TypeObjet", cascade={"persist"})
 	 */
 	private $typeObjet;
+	
+	/**
+    * @ORM\OneToOne(targetEntity="Musee\BlogBundle\Entity\Image", cascade={"persist", "remove"})
+    */
+    private $image;
 
 
     /**
@@ -205,5 +210,28 @@ class Objet
     public function getTypeObjet()
     {
         return $this->typeObjet;
+    }
+
+    /**
+     * Set image
+     *
+     * @param \Musee\BlogBundle\Entity\Image $image
+     * @return Objet
+     */
+    public function setImage(\Musee\BlogBundle\Entity\Image $image = null)
+    {
+        $this->image = $image;
+    
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \Musee\BlogBundle\Entity\Image 
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }

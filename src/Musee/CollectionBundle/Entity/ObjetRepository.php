@@ -3,6 +3,7 @@
 namespace Musee\CollectionBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator; //pour la pagination
 
 /**
  * ObjetRepository
@@ -12,4 +13,21 @@ use Doctrine\ORM\EntityRepository;
  */
 class ObjetRepository extends EntityRepository
 {
+	public function getObjets($nombreParPage, $page)
+	{
+		$query = $this 	-> createQueryBuilder('o')
+						-> leftJoin('o.image', 'i')
+							->addSelect('i')
+						-> leftJoin('o.statutObjet', 's')
+							->addSelect('s')
+						-> leftJoin('o.typeObjet', 't')
+							->addSelect('t')
+						-> orderBy('s.dateAquisition', 'DESC')
+						-> getQuery();
+						
+		$query -> setFirstResult(($page-1) * $nombreParPage)
+			   -> setMaxResults($nombreParPage);
+		
+		return new Paginator($query);
+	}
 }

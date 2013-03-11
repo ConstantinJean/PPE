@@ -5,6 +5,7 @@ namespace Musee\CollectionBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Musee\BlogBundle\Form\ImageType;
 
 class ObjetType extends AbstractType
 {
@@ -21,6 +22,7 @@ class ObjetType extends AbstractType
             ->add('typeObjet', 'entity', array('class' => 'MuseeCollectionBundle:TypeObjet',
 												'property' => 'nom',
 												'multiple' => false))
+			->add('image', new ImageType(), array('required' => false))
         ;
     }
 

@@ -49,7 +49,7 @@ class Objet
 	private $salleStockage;
 	
 	/**
-	 * @ORM\OneToOne(targetEntity="Musee\CollectionBundle\Entity\StatutObjet")
+	 * @ORM\OneToOne(targetEntity="Musee\CollectionBundle\Entity\StatutObjet", cascade={"persist"})
 	 */
 	private $statutObjet;
 	
@@ -57,6 +57,11 @@ class Objet
 	 * @ORM\OneToOne(targetEntity="Musee\CollectionBundle\Entity\TypeObjet", cascade={"persist"})
 	 */
 	private $typeObjet;
+	
+	/**
+    * @ORM\OneToOne(targetEntity="Musee\BlogBundle\Entity\Image", cascade={"persist"})
+    */
+    private $image;
 
 
     /**
@@ -159,5 +164,51 @@ class Objet
     public function getSalleStockage()
     {
         return $this->salleStockage;
+    }
+
+    /**
+     * Set statutObjet
+     *
+     * @param \Musee\CollectionBundle\Entity\StatutObjet $statutObjet
+     * @return Objet
+     */
+    public function setStatutObjet(\Musee\CollectionBundle\Entity\StatutObjet $statutObjet = null)
+    {
+        $this->statutObjet = $statutObjet;
+    
+        return $this;
+    }
+
+    /**
+     * Get statutObjet
+     *
+     * @return \Musee\CollectionBundle\Entity\StatutObjet 
+     */
+    public function getStatutObjet()
+    {
+        return $this->statutObjet;
+    }
+
+    /**
+     * Set typeObjet
+     *
+     * @param \Musee\CollectionBundle\Entity\TypeObjet $typeObjet
+     * @return Objet
+     */
+    public function setTypeObjet(\Musee\CollectionBundle\Entity\TypeObjet $typeObjet = null)
+    {
+        $this->typeObjet = $typeObjet;
+    
+        return $this;
+    }
+
+    /**
+     * Get typeObjet
+     *
+     * @return \Musee\CollectionBundle\Entity\TypeObjet 
+     */
+    public function getTypeObjet()
+    {
+        return $this->typeObjet;
     }
 }
