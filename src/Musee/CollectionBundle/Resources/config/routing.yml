@@ -11,3 +11,7 @@ musee_collection_ajouter:
 musee_collection_supprimer:
     pattern:  /supprimer/{id}
     defaults: { _controller: MuseeCollectionBundle:Collection:supprimerObjet }
+
+musee_collection_modifier:
+    pattern:  /modifier/{id}
+    defaults: { _controller: MuseeCollectionBundle:Collection:modifierObjet }
