@@ -58,11 +58,19 @@ class Article
      * @ORM\Column(name="date", type="datetime")
      */
     private $date;
+	
+	/**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateEdition", type="datetime")
+     */
+    private $dateEdition;
 
 
      public function __construct()
 	{
 		$this->date = new \Datetime;
+		$this->dateEdition = new \Datetime;
 	}
 	
 	/**
