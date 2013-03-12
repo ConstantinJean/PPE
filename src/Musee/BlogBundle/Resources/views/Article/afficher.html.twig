@@ -1,0 +1,15 @@
+{# src/Musee/BlogBundle/Resources/views/Article/ajouter.html.twig #}
+
+{% extends "::layout.html.twig" %}
+{% block body %}
+<script src="{{ asset('CKEditor/ckeditor/ckeditor.js') }}" type="text/javascript"></script>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="offset2 span8">
+			<h3>{{article.titre}}</h3>
+			{{article.contenu}}
+			{{article.auteur}}
+		</div>
+	</div>
+</div>
+{% endblock %}

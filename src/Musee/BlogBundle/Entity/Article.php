@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Musee\BlogBundle\Entity\ArticleRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Article
 {
@@ -18,7 +19,7 @@ class Article
     private $image;
 
     /**
-    * @ORM\OneToOne(targetEntity="Musee\BlogBundle\Entity\TypeArticle", cascade={"persist"})
+    * @ORM\ManyToOne(targetEntity="Musee\BlogBundle\Entity\TypeArticle", cascade={"persist"})
     */
     private $typeArticle;
 	
@@ -58,12 +59,39 @@ class Article
      * @ORM\Column(name="date", type="datetime")
      */
     private $date;
+	
+	/**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateEdition", type="datetime")
+     */
+    private $dateEdition;
 
 
      public function __construct()
 	{
 		$this->date = new \Datetime;
+		$this->dateEdition = new \Datetime;
 	}
+	
+	/**
+	 * @ORM\PreUpdate()
+	 */
+	public function updateDateEdition() //met a jour la date d'édition
+	{
+		$this -> dateEdition = new \Datetime;
+	}
+	
+	/**
+	 * @ORM\PrePersist()
+	 * @ORM\PreUpdate()
+	 */
+	public function ecapeHtmlChars()
+	{
+		$this -> contenu = preg_replace('@<script[^>]*?>.*?</script>@si', '', $this -> contenu);
+		$this -> contenu = htmlentities($this -> contenu);
+	}
+	
 	
 	/**
      * Get id
@@ -211,5 +239,28 @@ class Article
     public function getTypeArticle()
     {
         return $this->typeArticle;
+    }
+
+    /**
+     * Set dateEdition
+     *
+     * @param \DateTime $dateEdition
+     * @return Article
+     */
+    public function setDateEdition($dateEdition)
+    {
+        $this->dateEdition = $dateEdition;
+    
+        return $this;
+    }
+
+    /**
+     * Get dateEdition
+     *
+     * @return \DateTime 
+     */
+    public function getDateEdition()
+    {
+        return $this->dateEdition;
     }
 }

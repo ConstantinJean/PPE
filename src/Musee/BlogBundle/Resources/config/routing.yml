@@ -1,3 +1,17 @@
-musee_blog_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: MuseeBlogBundle:Default:index }
+musee_blog_ajouter:
+    pattern:  /ajouter
+    defaults: { _controller: MuseeBlogBundle:Article:ajouterArticle }
+
+musee_blog_afficher_liste:
+    pattern:  /afficher/{page}
+    defaults: { _controller: MuseeBlogBundle:Article:afficherListeArticle }
+    requirements:
+        page: \d
+
+musee_blog_modifier:
+    pattern: /modifier/{id}
+    defaults: { _controller: MuseeBlogBundle:Article:modifierArticle }
+
+musee_blog_supprimer:
+    pattern:  /supprimer/{id}
+    defaults: { _controller: MuseeBlogBundle:Article:supprimerArticle }
