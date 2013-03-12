@@ -84,6 +84,7 @@ class Article
 	
 	/**
 	 * @ORM\PrePersist()
+	 * @ORM\PreUpdate()
 	 */
 	public function ecapeHtmlChars()
 	{
