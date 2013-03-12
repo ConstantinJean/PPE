@@ -3,6 +3,7 @@
 namespace Musee\BlogBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator; //pour la pagination
 
 /**
  * ArticleRepository
@@ -12,4 +13,19 @@ use Doctrine\ORM\EntityRepository;
  */
 class ArticleRepository extends EntityRepository
 {
+	public function getArticle($nombreParPage, $page)
+	{
+		$query = $this -> createQueryBuilder('a')
+					   -> leftJoin('a.image', 'i')
+							->addSelect('i')
+						-> leftJoin('a.typeArticle', 't')
+							->addSelect('t')
+						-> orderBy('a.dateEdition', 'DESC')
+						-> getQuery();
+						
+		$query -> setFirstResult(($page-1) * $nombreParPage)
+				-> setMaxResults($nombreParPage);
+		
+		return new Paginator($query);
+	}					
 }
