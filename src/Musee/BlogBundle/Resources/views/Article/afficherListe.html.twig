@@ -1,0 +1,44 @@
+{# src/Musee/BlogBundle/Resources/views/Article/ajouter.html.twig #}
+
+{% extends "::layout.html.twig" %}
+{% block body %}
+	{% for article in articles %}
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="offset2 span8">
+					<h3>{{article.titre}}</h3>
+					{% if article.image is not null %}
+						<div class="pull-left thumbnail">
+							<img src="{{ asset(article.image.webPath) }}" alt="{{article.image.alt}}">
+						</div>
+					{% endif %}
+					{{article.contenu|e('html')}}
+					{{article.auteur}}
+					<div class="pull-right">
+						<a class="btn btn-success" href="{{ path('musee_blog_modifier', {'id' : article.id}) }}">Modifier</a>
+						<a class="btn btn-danger" href="{{ path('musee_blog_supprimer', {'id' : article.id}) }}">Supprimer</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+	
+	<div class="row-fluid">
+			<div class="offset5 span2">
+				<div class="pagination text-center">
+					<ul>
+						{% if nombrePage == 0 %}
+							{% set nombrePage = 1 %}
+						{% endif %}
+						{% for p in range(1, nombrePage) %}
+							<li {% if p == page %} class="active" {% endif %}>
+								<a href="{{ path('musee_blog_afficher_liste', {'page' : p}) }}">{{p}}</a>
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+

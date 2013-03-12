@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Musee\BlogBundle\Entity\ArticleRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Article
 {
@@ -18,7 +19,7 @@ class Article
     private $image;
 
     /**
-    * @ORM\OneToOne(targetEntity="Musee\BlogBundle\Entity\TypeArticle", cascade={"persist"})
+    * @ORM\ManyToOne(targetEntity="Musee\BlogBundle\Entity\TypeArticle", cascade={"persist"})
     */
     private $typeArticle;
 	
@@ -58,11 +59,19 @@ class Article
      * @ORM\Column(name="date", type="datetime")
      */
     private $date;
+	
+	/**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateEdition", type="datetime")
+     */
+    private $dateEdition;
 
 
      public function __construct()
 	{
 		$this->date = new \Datetime;
+		$this->dateEdition = new \Datetime;
 	}
 	
 	/**
@@ -165,5 +174,51 @@ class Article
     public function getDate()
     {
         return $this->date;
+    }
+
+    /**
+     * Set image
+     *
+     * @param \Musee\BlogBundle\Entity\Image $image
+     * @return Article
+     */
+    public function setImage(\Musee\BlogBundle\Entity\Image $image = null)
+    {
+        $this->image = $image;
+    
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \Musee\BlogBundle\Entity\Image 
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set typeArticle
+     *
+     * @param \Musee\BlogBundle\Entity\TypeArticle $typeArticle
+     * @return Article
+     */
+    public function setTypeArticle(\Musee\BlogBundle\Entity\TypeArticle $typeArticle = null)
+    {
+        $this->typeArticle = $typeArticle;
+    
+        return $this;
+    }
+
+    /**
+     * Get typeArticle
+     *
+     * @return \Musee\BlogBundle\Entity\TypeArticle 
+     */
+    public function getTypeArticle()
+    {
+        return $this->typeArticle;
     }
 }

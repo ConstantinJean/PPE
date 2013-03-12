@@ -1,7 +1,17 @@
 musee_blog_ajouter:
     pattern:  /ajouter
-    defaults: { _controller: MuseeBlogBundle:Article:ajouter }
+    defaults: { _controller: MuseeBlogBundle:Article:ajouterArticle }
 
-musee_blog_afficher:
-    pattern:  /afficher/{id}
-    defaults: { _controller: MuseeBlogBundle:Article:afficher }
+musee_blog_afficher_liste:
+    pattern:  /afficher/{page}
+    defaults: { _controller: MuseeBlogBundle:Article:afficherListeArticle }
+    requirements:
+        page: \d
+
+musee_blog_modifier:
+    pattern: /modifier/{id}
+    defaults: { _controller: MuseeBlogBundle:Article:modifierArticle }
+
+musee_blog_supprimer:
+    pattern:  /supprimer/{id}
+    defaults: { _controller: MuseeBlogBundle:Article:supprimerArticle }

@@ -27,6 +27,13 @@ class Image
      * @ORM\Column(name="URL", type="string", length=255)
      */
     private $URL;
+	
+	/**
+     * @var string
+     *
+     * @ORM\Column(name="alt", type="string", length=255)
+     */
+    private $alt;
 
 
     /**
