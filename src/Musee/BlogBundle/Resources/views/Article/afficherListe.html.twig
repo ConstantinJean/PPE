@@ -12,7 +12,7 @@
 							<img src="{{ asset(article.image.webPath) }}" alt="{{article.image.alt}}">
 						</div>
 					{% endif %}
-					{{article.contenu|e('html')}}
+					{{article.contenu|raw}}
 					{{article.auteur}}
 					<div class="pull-right">
 						<a class="btn btn-success" href="{{ path('musee_blog_modifier', {'id' : article.id}) }}">Modifier</a>

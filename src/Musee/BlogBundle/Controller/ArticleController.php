@@ -41,7 +41,7 @@ class ArticleController extends Controller
 			
 		foreach ($articles as $article)
 		{
-		$article -> setContenu(htmlentities($article-> getContenu()) ); 
+		$article -> setContenu(html_entity_decode($article-> getContenu()) ); 
 		}
 		return $this -> render('MuseeBlogBundle:Article:afficherListe.html.twig', array(
 		'articles' => $articles,
@@ -52,6 +52,7 @@ class ArticleController extends Controller
 	
 	public function modifierArticleAction(Article $article)
 	{
+		$article -> setContenu(html_entity_decode($article-> getContenu()) ); 
 		$form = $this -> createForm(new ArticleType, $article);
 		
 		$request = $this -> get('request');

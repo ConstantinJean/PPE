@@ -82,6 +82,14 @@ class Article
 		$this -> dateEdition = new \Datetime;
 	}
 	
+	/**
+	 * @ORM\PrePersist()
+	 */
+	public function ecapeHtmlChars()
+	{
+		$this -> contenu = preg_replace('@<script[^>]*?>.*?</script>@si', '', $this -> contenu);
+		$this -> contenu = htmlentities($this -> contenu);
+	}
 	
 	
 	/**
