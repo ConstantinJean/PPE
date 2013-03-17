@@ -9,11 +9,11 @@
 			<div class="row-fluid">
 				<div class="offset1 span5 well">
 					{% if objet.image is not null %}
-					<div class="thumbnail pull-left span6">
+					<div class="thumbnail pull-left span6" style="margin-right:5%">
 						<img src="{{ asset(objet.image.webPath) }}" alt="{{objet.image.alt}}">
 					</div>
 					{% endif %}
-					<div class="span5">
+					<div style="padding-top:5%">
 						<p><b>Nom de l'objet: </b>{{objet.nom}}</p>
 						<p><b>Description : </b>{{objet.description}}</p>
 						<p><b>Exposé : </b>
@@ -33,11 +33,11 @@
 			{% elseif loop.index is even %}
 				<div class="span5 well">
 					{% if objet.image is not null %}
-					<div class="thumbnail pull-left span6">
+					<div class="thumbnail pull-left span6" style="margin-right:5%">
 						<img src="{{ asset(objet.image.webPath) }}" alt="{{objet.image.alt}}">
 					</div>
 					{% endif %}
-					<div class="span5">
+					<div style="padding-top:5%">
 						<p><b>Nom de l'objet: </b>{{objet.nom}}</p> 
 						<p><b>Description : </b>{{objet.description}}</p>
 						<p><b>Exposé : </b>

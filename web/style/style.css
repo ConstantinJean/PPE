@@ -18,3 +18,14 @@ body
 {
 	margin-top: 60px;
 }
+
+#conteneur
+{
+	background-color:#ffffff;
+}
+
+#apropos
+{
+	text-indent:25px;
+	text-align:justify;
+}

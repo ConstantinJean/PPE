@@ -5,15 +5,17 @@
 	{% for article in articles %}
 		<div class="container-fluid">
 			<div class="row-fluid">
-				<div class="offset2 span8">
-					<h3>{{article.titre}}</h3>
+				<div class="offset2 span8 well">
 					{% if article.image is not null %}
-						<div class="pull-left thumbnail">
+						<div class="pull-left thumbnail span4" style="margin-right:5%; margin-left:0%">
 							<img src="{{ asset(article.image.webPath) }}" alt="{{article.image.alt}}">
 						</div>
 					{% endif %}
-					{{article.contenu|raw}}
-					{{article.auteur}}
+					<div style="padding-top:5%">
+					<h3 style="padding-top:0%">{{article.titre}}</h3>
+					<p>{{article.contenu|raw}}</p>
+					<p>{{article.auteur}}</p>
+					</div>
 					<div class="pull-right">
 						<a class="btn btn-success" href="{{ path('musee_blog_modifier', {'id' : article.id}) }}">Modifier</a>
 						<a class="btn btn-danger" href="{{ path('musee_blog_supprimer', {'id' : article.id}) }}">Supprimer</a>
