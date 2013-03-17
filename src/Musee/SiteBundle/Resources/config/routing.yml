@@ -18,6 +18,14 @@ musee_infosPratiques:
     pattern: /infosPratiques
     defaults: { _controller: MuseeSiteBundle:Site:infosPratiques }
 
+
 musee_pageAdmin:
     pattern: /admin
     defaults: { _controller: MuseeSiteBundle:Admin:pageAdmin }
+
+musee_mail:
+    pattern: /mail
+    defaults: { _controller: MuseeSiteBundle:site:mail }
+    requirements:
+        _method:  GET|POST
+
