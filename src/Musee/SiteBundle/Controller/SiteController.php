@@ -20,16 +20,6 @@ class SiteController extends Controller
 	
 	public function contactAction()
 	{
-		return $this->render('MuseeSiteBundle:Site:contact.html.twig');
-	}
-	
-	public function infosPratiquesAction()
-	{
-		return $this->render('MuseeSiteBundle:Site:infosPratiques.html.twig');
-	}
-	
-	public function mailAction($id)
-    {
 		$mail = new Mail();
 		$form = $this->createForm(new MailType(), $mail);
 
@@ -41,10 +31,10 @@ class SiteController extends Controller
 				// Perform some action, such as sending an email
 				$mailer = $this->get('mailer');
 				$message = \Swift_Message::newInstance()			
-					->setSubject($mail->subject)
-					->setFrom($mail->email)				
+					->setSubject($mail->getSubject())
+					->setFrom($mail->getEmail())				
 					->setTo('queelev@gmail.com')
-					->setBody($mail->body.'<br/>'.$mail->name);
+					->setBody($mail->getBody().'<br/>'.$mail->getName());
 					
 				$this->get('mailer')->send($message);
   
@@ -54,8 +44,13 @@ class SiteController extends Controller
 			}
 		}
 
-		return $this->render('MuseeSiteBundle:Site:mail.html.twig', array(
+		return $this->render('MuseeSiteBundle:Site:contact.html.twig', array(
 			'form' => $form->createView()
 		));
-    }
+	}
+	
+	public function infosPratiquesAction()
+	{
+		return $this->render('MuseeSiteBundle:Site:infosPratiques.html.twig');
+	}
 }
