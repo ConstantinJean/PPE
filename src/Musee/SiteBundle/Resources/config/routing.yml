@@ -17,3 +17,7 @@ musee_contact:
 musee_infosPratiques:
     pattern: /infosPratiques
     defaults: { _controller: MuseeSiteBundle:Site:infosPratiques }
+
+musee_pageAdmin:
+    pattern: /admin
+    defaults: { _controller: MuseeSiteBundle:Admin:pageAdmin }

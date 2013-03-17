@@ -24,7 +24,7 @@ security:
         main:
             pattern:        ^/
             anonymous:      true
-            provider:       main
+            provider:       in_memory
             form_login:
                 login_path: fos_user_security_login
                 check_path: fos_user_security_check
