@@ -12,6 +12,16 @@ class RegistrationFormType extends BaseType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         parent::buildForm($builder, $options);
+		
+		$builder->add('roleList', 'choice', array(
+			'choices'   => array(
+			'ROLE_ADMIN'   => 'ROLE_ADMIN',
+			'ROLE_CHERCHEUR' => 'ROLE_CHERCHEUR',
+			'ROLE_ADHERENT' => 'ROLE_ADHERENT',
+			),
+			'property_path' => false,
+			'multiple'  => true,
+		));
 
       
     }

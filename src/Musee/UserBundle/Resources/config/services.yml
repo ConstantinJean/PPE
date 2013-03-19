@@ -4,6 +4,6 @@ parameters:
 services:
     musee_user.registration.form.type:
         class: Musee\UserBundle\Form\Type\RegistrationFormType
-        arguments: [%fos_user.model.user.class%]
+        arguments: [%security.role_hierarchy.roles%]
         tags:
-            - { name: form.type, alias: acme_user_registration }
+            - { name: form.type, alias: musee_user_registration }
