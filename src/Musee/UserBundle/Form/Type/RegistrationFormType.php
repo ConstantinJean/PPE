@@ -20,7 +20,7 @@ class RegistrationFormType extends BaseType
 			'ROLE_ADHERENT' => 'ROLE_ADHERENT',
 			),
 			'property_path' => false,
-			'multiple'  => true,
+			'multiple'  => false,
 			'label' => 'Rôle'
 		))
 				-> remove('username');
