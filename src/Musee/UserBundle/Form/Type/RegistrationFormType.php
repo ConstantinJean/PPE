@@ -13,7 +13,7 @@ class RegistrationFormType extends BaseType
     {
         parent::buildForm($builder, $options);
 		
-		$builder -> add('roleList', 'choice', array(
+		$builder -> add('role', 'choice', array(
 			'choices'   => array(
 			'ROLE_ADMIN'   => 'ROLE_ADMIN',
 			'ROLE_CHERCHEUR' => 'ROLE_CHERCHEUR',

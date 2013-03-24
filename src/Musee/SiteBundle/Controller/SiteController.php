@@ -53,4 +53,9 @@ class SiteController extends Controller
 	{
 		return $this->render('MuseeSiteBundle:Site:infosPratiques.html.twig');
 	}
+	
+	public function adminAction()
+	{
+		return $this -> render('MuseeSiteBundle:Site:admin.html.twig');
+	}
 }

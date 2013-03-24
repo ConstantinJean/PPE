@@ -47,12 +47,10 @@ class RegistrationController extends BaseController
 
                 $userManager->updateUser($user);
 				$formData = $this->container -> get('request')->request->get($form->getName());           
-				$roles = $formData['roleList'];
+				$role = $formData['role'];
 
-				foreach($roles as $key => $value)
-				{
-				 $user->addRole($value);
-				}
+				$user->addRole($role);
+				
 
                 if (null === $response = $event->getResponse()) {
                     $url = $this->container->get('router')->generate('fos_user_registration_confirmed');
