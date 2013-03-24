@@ -24,7 +24,7 @@ musee_mail:
     requirements:
         _method:  GET|POST
 
-musee_pageAdmin:
-    pattern:  /admin
-    defaults: { _controller: MuseeSiteBundle:Site:admin }
+musee_pageEnregistrementAdmin:
+    pattern:  /admin/register
+    defaults: { _controller: MuseeSiteBundle:Site:register }
 

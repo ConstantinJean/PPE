@@ -54,8 +54,8 @@ class SiteController extends Controller
 		return $this->render('MuseeSiteBundle:Site:infosPratiques.html.twig');
 	}
 	
-	public function adminAction()
+	public function registerAction()
 	{
-		return $this -> render('MuseeSiteBundle:Site:admin.html.twig');
+		return $this -> render('MuseeSiteBundle:Site:register.html.twig');
 	}
 }
