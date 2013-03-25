@@ -28,3 +28,11 @@ musee_pageEnregistrementAdmin:
     pattern:  /admin/register
     defaults: { _controller: MuseeSiteBundle:Site:register }
 
+musee_pageListeModifUserAdmin:
+    pattern:  /admin/modifier/liste
+    defaults: { _controller: MuseeSiteBundle:Site:afficherModif }
+
+musee_pageListeSupprUserAdmin:
+    pattern:  /admin/supprimer/liste
+    defaults: { _controller: MuseeSiteBundle:Site:afficherSuppr }
+

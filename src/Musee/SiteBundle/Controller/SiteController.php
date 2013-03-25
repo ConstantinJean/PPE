@@ -58,4 +58,19 @@ class SiteController extends Controller
 	{
 		return $this -> render('MuseeSiteBundle:Site:register.html.twig');
 	}
+	
+	public function afficherModifAction()
+	{
+		return $this -> render('MuseeSiteBundle:Site:modif.html.twig');
+	}
+	
+	public function afficherSupprAction()
+	{
+		return $this -> render('MuseeSiteBundle:Site:suppr.html.twig');
+	}
+	
+	public function listeAction()
+	{
+		return $this -> render('MuseeSiteBundle:Site:liste.html.twig');
+	}
 }

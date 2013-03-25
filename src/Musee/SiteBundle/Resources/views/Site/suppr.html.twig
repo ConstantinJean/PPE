@@ -8,16 +8,17 @@
 		<div class="row-fluid">
 			<div class="offset1 span4">
 				<ul class="nav nav-tabs">
-					<li class="active">
+					<li>
 					<a href="{{ path('musee_pageEnregistrementAdmin') }}">Enregistrer</a>
 					</li>
 					<li><a href="{{ path('musee_pageListeModifUserAdmin') }}">Modifier</a></li>
-					<li><a href="#">Supprimer</a></li>
+					<li class="active"><a href="{{ path('musee_pageListeSupprUserAdmin') }}">Supprimer</a></li>
 				</ul>
-			
-				<div class="well">
-					{% render "MuseeUserBundle:Registration:register" %}
+				
+				<div>
+					{% include "MuseeSiteBundle:Site:liste.html.twig" %} 
 				</div>
+				
 			</div>
 		</div>
 	</div>
