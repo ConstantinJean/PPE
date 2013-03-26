@@ -6,17 +6,21 @@
 
 	<div class="container-fluid">
 		<div class="row-fluid">
-			<div class="offset1 span4">
+			<div class="offset1 span8">
 				<ul class="nav nav-tabs">
 					<li>
 					<a href="{{ path('musee_pageEnregistrementAdmin') }}">Enregistrer</a>
 					</li>
-					<li><a href="{{ path('musee_pageListeModifUserAdmin') }}">Modifier</a></li>
-					<li class="active"><a href="{{ path('musee_pageListeSupprUserAdmin') }}">Supprimer</a></li>
+					<li>
+						<a href="{{ path('musee_pageListeModifUserAdmin', {'page' : 1}) }}">Modifier</a>
+					</li>
+					<li class="active">
+						<a href="{{ path('musee_pageListeSupprUserAdmin', {'page' : 1}) }}">Supprimer</a>
+					</li>
 				</ul>
 				
 				<div>
-					{% include "MuseeSiteBundle:Site:liste.html.twig" %} 
+					{% render "MuseeSiteBundle:Site:liste" with { page: page, route: route } %} 
 				</div>
 				
 			</div>

@@ -13,16 +13,19 @@ class RegistrationFormType extends BaseType
     {
         parent::buildForm($builder, $options);
 		
-		$builder -> add('role', 'choice', array(
-			'choices'   => array(
-			'ROLE_ADMIN'   => 'ROLE_ADMIN',
-			'ROLE_CHERCHEUR' => 'ROLE_CHERCHEUR',
-			'ROLE_ADHERENT' => 'ROLE_ADHERENT',
-			),
-			'property_path' => false,
-			'multiple'  => false,
-			'label' => 'Rôle'
-		))
+		$builder -> add('name', 'text', array('required' => true))
+				-> add('firstName', 'text', array('required' => true))
+			
+				-> add('role', 'choice', array(
+					'choices'   => array(
+					'ROLE_ADMIN'   => 'ROLE_ADMIN',
+					'ROLE_CHERCHEUR' => 'ROLE_CHERCHEUR',
+					'ROLE_ADHERENT' => 'ROLE_ADHERENT',
+					),
+					'property_path' => false,
+					'multiple'  => false,
+					'label' => 'Rôle'
+				))
 				-> remove('username');
 
       

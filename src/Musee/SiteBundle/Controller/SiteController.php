@@ -59,18 +59,30 @@ class SiteController extends Controller
 		return $this -> render('MuseeSiteBundle:Site:register.html.twig');
 	}
 	
-	public function afficherModifAction()
+	public function afficherModifAction($page)
 	{
-		return $this -> render('MuseeSiteBundle:Site:modif.html.twig');
+		return $this -> render('MuseeSiteBundle:Site:modif.html.twig', array('page' => $page,'route' => 'musee_pageListeModifUserAdmin'));
 	}
 	
-	public function afficherSupprAction()
+	public function afficherSupprAction($page)
 	{
-		return $this -> render('MuseeSiteBundle:Site:suppr.html.twig');
+		return $this -> render('MuseeSiteBundle:Site:suppr.html.twig', array('page' => $page, 'route' => 'musee_pageListeSupprUserAdmin'));
 	}
 	
-	public function listeAction()
+	public function listeAction($page, $route)
 	{
-		return $this -> render('MuseeSiteBundle:Site:liste.html.twig');
+		$users = $this->getDoctrine()
+                     ->getManager()
+                     ->getRepository('MuseeUserBundle:User')
+                     ->getUsers(20, $page); // 20 users par page
+ 
+		// On ajoute ici les variables page et nb_page à la vue
+		return $this->render('MuseeSiteBundle:Site:liste.html.twig', array(
+		  'users'   => $users,
+		  'page'       => $page,
+		  'nombrePage' => ceil(count($users)/20),
+		  'route' => $route
+		));
+		
 	}
 }
