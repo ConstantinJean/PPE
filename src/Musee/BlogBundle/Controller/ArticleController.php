@@ -112,7 +112,32 @@ class ArticleController extends Controller
 		}
 		
 		return $this -> render('MuseeBlogBundle:Article:afficher.html.twig', array('articles' => $articles));
-		
 	}
 	
+	public function ajouterCommentaireAction(Article $article)
+	{
+		$commentaire = new Commentaire();
+		
+		// On crée le FormBuilder grâce à la méthode du contrôleur
+		$form = $this->createForm(new CommentaireType, $commentaire);
+		
+		$request = $this -> get('request');
+		if($request->getMethod() == 'POST')
+		{
+			$form->bind($request);
+			
+			if($form->isValid()) //verification du formulaire
+			{
+				// On lie les commentaires à l'article
+				$commentaire->setArticle($article);
+				
+				$em = $this->getDoctrine()->getManager();
+				$em->persist($commentaire);
+				$em->flush();
+				
+				return $this->redirect($this->generateUrl('musee_blog_afficher', array('article' => $article)));
+			}
+		}
+		
+	}
 }
