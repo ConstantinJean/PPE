@@ -17,7 +17,7 @@
 				</p>
 				 
 				{# On met l'id de l'objet dans la route de l'action du formulaire #}
-				<form action="{{ path('musee_blog_supprimer', {'id': article.id}) }}" method="post">
+				<form action="{{ path('musee_blog_supprimer', {'slug': article.slug}) }}" method="post">
 					<a href="{{ path('musee_blog_afficher_liste', {'page': 1}) }}" class="btn">
 						<i class="icon-chevron-left"></i>
 						Retour à la liste des articles

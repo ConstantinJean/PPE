@@ -9,9 +9,13 @@ musee_blog_afficher_liste:
         page: \d
 
 musee_blog_modifier:
-    pattern: /modifier/{id}
+    pattern: /modifier/{slug}
     defaults: { _controller: MuseeBlogBundle:Article:modifierArticle }
 
 musee_blog_supprimer:
-    pattern:  /supprimer/{id}
+    pattern:  /supprimer/{slug}
     defaults: { _controller: MuseeBlogBundle:Article:supprimerArticle }
+
+musee_blog_afficher:
+    pattern: /afficher/{slug}
+    defaults: { _controller: MuseeBlogBundle:Article:afficherArticle }

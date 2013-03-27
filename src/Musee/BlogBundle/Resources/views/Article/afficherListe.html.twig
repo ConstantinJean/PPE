@@ -17,8 +17,9 @@
 					<p>{{article.auteur}}</p>
 					</div>
 					<div class="pull-right">
-						<a class="btn btn-success" href="{{ path('musee_blog_modifier', {'id' : article.id}) }}">Modifier</a>
-						<a class="btn btn-danger" href="{{ path('musee_blog_supprimer', {'id' : article.id}) }}">Supprimer</a>
+						<a class="btn btn-info" href="{{ path('musee_blog_afficher', {'slug' : article.slug}) }}">Afficher l'article</a>
+						<a class="btn btn-success" href="{{ path('musee_blog_modifier', {'slug' : article.slug}) }}">Modifier</a>
+						<a class="btn btn-danger" href="{{ path('musee_blog_supprimer', {'slug' : article.slug}) }}">Supprimer</a>
 					</div>
 				</div>
 			</div>

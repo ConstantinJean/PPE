@@ -27,5 +27,21 @@ class ArticleRepository extends EntityRepository
 				-> setMaxResults($nombreParPage);
 		
 		return new Paginator($query);
-	}					
+	}
+
+	public function findBySlug($slug)
+	{
+		$query = $this -> createQueryBuilder('a')
+						-> leftJoin('a.image', 'i')
+							->addSelect('i')
+						-> leftJoin('a.typeArticle', 't')
+							->addSelect('t')
+						-> where('a.slug= :slug')
+						-> setParameter('slug', $slug)
+					   
+						-> getQuery();
+		$result = $query -> getResult();
+		
+		return $result;
+	}
 }

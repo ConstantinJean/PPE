@@ -99,5 +99,20 @@ class ArticleController extends Controller
 		'article' => $article));
 	}
 	
+	public function afficherArticleAction($slug)
+	{
+		$articles = $this -> getDoctrine()
+						 -> getManager()
+						 -> getRepository('MuseeBlogBundle:Article')
+						 -> findBySlug($slug);
+		
+		foreach ($articles as $article)
+		{
+		$article -> setContenu(html_entity_decode($article-> getContenu()) ); 
+		}
+		
+		return $this -> render('MuseeBlogBundle:Article:afficher.html.twig', array('articles' => $articles));
+		
+	}
 	
 }

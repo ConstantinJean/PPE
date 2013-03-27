@@ -3,6 +3,7 @@
 namespace Musee\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Article
@@ -66,6 +67,12 @@ class Article
      * @ORM\Column(name="dateEdition", type="datetime")
      */
     private $dateEdition;
+	
+	/**
+     * @Gedmo\Slug(fields={"titre"})
+     * @ORM\Column(length=128, unique=true)
+     */
+    private $slug;
 
 
      public function __construct()
@@ -262,5 +269,28 @@ class Article
     public function getDateEdition()
     {
         return $this->dateEdition;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Article
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }
