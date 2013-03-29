@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Commentaire
 {
 	/**
-     * @ORM\ManyToOne(targetEntity="Musee\BlogBundle\Entity\Article")
+     * @ORM\ManyToOne(targetEntity="Musee\BlogBundle\Entity\Article", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $article;
@@ -47,6 +47,11 @@ class Commentaire
      * @ORM\Column(name="Date", type="datetime")
      */
     private $Date;
+	
+	public function __construct()
+	{
+		$this->date = new \Datetime;
+	}
 
 
     /**

@@ -25,6 +25,7 @@
 				</div>
 			</div>
 		</div>
+		{% render "MuseeBlogBundle:Article:ajouterCommentaire" with { article: article } %}
 	{% endfor %}
-	{% include 'ajouterCommentaire.html' %}
+	
 {% endblock %}

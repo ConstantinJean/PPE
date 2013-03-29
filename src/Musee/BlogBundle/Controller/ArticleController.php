@@ -5,6 +5,8 @@ namespace Musee\BlogBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Musee\BlogBundle\Entity\Article;
 use Musee\BlogBundle\Form\ArticleType;
+use Musee\BlogBundle\Form\CommentaireType;
+use Musee\BlogBundle\Entity\Commentaire;
 
 class ArticleController extends Controller
 {
@@ -129,7 +131,7 @@ class ArticleController extends Controller
 			if($form->isValid()) //verification du formulaire
 			{
 				// On lie les commentaires à l'article
-				$commentaire->setArticle($article);
+				$commentaire->setArticle($article-> getId());
 				
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($commentaire);
@@ -139,5 +141,7 @@ class ArticleController extends Controller
 			}
 		}
 		
+		return $this->render('MuseeBlogBundle:Article:ajouterCommentaire.html.twig', array(
+		'form' => $form->createView(),));
 	}
 }
