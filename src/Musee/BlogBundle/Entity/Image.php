@@ -148,19 +148,6 @@ class Image
     }
 
     /**
-     * Set Id
-     *
-     * @param integer $id
-     * @return Image
-     */
-    public function setId($id)
-    {
-        $this->Id = $id;
-    
-        return $this;
-    }
-
-    /**
      * Set URL
      *
      * @param string $uRL
