@@ -38,19 +38,7 @@ class TypeArticle
     {
         return $this->id;
     }
-
-    /**
-     * Set Id
-     *
-     * @param integer $id
-     * @return TypeArticle
-     */
-    public function setId($id)
-    {
-        $this->Id = $id;
-    
-        return $this;
-    }
+	
 
     /**
      * Set Intitule
