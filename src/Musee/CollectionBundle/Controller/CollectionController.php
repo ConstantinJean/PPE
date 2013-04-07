@@ -101,7 +101,7 @@ class CollectionController extends Controller
 		));
 	}
 	
-	public function afficherObjetAction($slug)
+	public function afficherObjetAction($id)
 	{
 		$articles = $this -> getDoctrine()
 						 -> getManager()
