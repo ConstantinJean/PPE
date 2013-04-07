@@ -15,8 +15,10 @@
 					<h3 style="padding-top:0%">{{article.titre}}</h3>
 					<p><small>{{article.date|date('d-m-Y')}}</small></p>
 					<p>{{article.contenu|raw}}</p>
-					<p>{{article.auteur}}</p>
-					<p><small class="pull-right">{{article.dateEdition|date('d-m-Y')}}</small></p>
+					<p>{{article.auteur}}
+					{% if article.dateEdition is not null %} 
+						- <small>Dernière modification le {{article.dateEdition|date('d-m-Y')}}</small>
+					{% endif %}</p>
 					</div>
 					<div class="pull-right">
 						<a class="btn btn-success" href="{{ path('musee_blog_modifier', {'slug' : article.slug}) }}">Modifier</a>

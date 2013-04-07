@@ -100,4 +100,18 @@ class CollectionController extends Controller
 		  'form'    => $form->createView()
 		));
 	}
+	
+	public function afficherObjetAction($slug)
+	{
+		$articles = $this -> getDoctrine()
+						 -> getManager()
+						 -> getRepository('MuseeCollectionBundle:Objet');
+		
+		foreach ($objets as $objet)
+		{
+		$objet -> setContenu(html_entity_decode($objet-> getContenu()) ); 
+		}
+		
+		return $this -> render('MuseeCollectionBundle:Objet:afficher.html.twig', array('Objets' => $Objets));
+	}
 }
