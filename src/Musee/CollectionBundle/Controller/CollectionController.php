@@ -107,11 +107,6 @@ class CollectionController extends Controller
 						 -> getManager()
 						 -> getRepository('MuseeCollectionBundle:Objet');
 		
-		foreach ($objets as $objet)
-		{
-		$objet -> setContenu(html_entity_decode($objet-> getContenu()) ); 
-		}
-		
 		return $this -> render('MuseeCollectionBundle:Objet:afficher.html.twig', array('Objets' => $Objets));
 	}
 }
