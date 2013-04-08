@@ -2,7 +2,6 @@
 
 {% extends "::layout.html.twig" %}
 {% block body %}
-	
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="offset2 span8 well">
@@ -15,7 +14,7 @@
 					<h3 style="padding-top:0%">{{objet.nom}}</h3>
 					<p><small>{{objet.typeObjet.nom}}</small></p>
 					<p>{{objet.description|raw}}</p>
-					<p>{{objet.exposition}} - {{objet.salleStockage.nom}} - {{objet.statutObjet.etat}}</p>
+					<p>{% if objet.exposition == 1 %}Exposé{% else %}Non exposé{% endif %} - {{objet.salleStockage.nom}} - {{objet.statutObjet.etat}}</p>
 					</div>
 					<div class="pull-right">
 						<a class="btn btn-success" href="{{ path('musee_collection_modifier', {'id' : objet.id}) }}">Modifier</a>
@@ -24,6 +23,4 @@
 				</div>
 			</div>
 		</div>
-	
-	
 {% endblock %}
