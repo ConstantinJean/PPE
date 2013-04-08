@@ -103,10 +103,11 @@ class CollectionController extends Controller
 	
 	public function afficherObjetAction($id)
 	{
-		$objets = $this -> getDoctrine()
+		$repository = $this -> getDoctrine()
 						 -> getManager()
 						 -> getRepository('MuseeCollectionBundle:Objet');
+		$objet = $repository -> findOneById($id);
 		
-		return $this -> render('MuseeCollectionBundle:Objet:afficher.html.twig', array('Objets' => $Objets));
+		return $this -> render('MuseeCollectionBundle:Collection:afficher.html.twig', array('objet' => $objet));
 	}
 }

@@ -2,28 +2,28 @@
 
 {% extends "::layout.html.twig" %}
 {% block body %}
-	{% for objet in objets %}
+	
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="offset2 span8 well">
 					{% if objet.image is not null %}
 						<div class="pull-left thumbnail span4" style="margin-right:5%; margin-left:0%">
-							<img src="{{ asset(article.image.webPath) }}" alt="{{article.image.alt}}">
+							<img src="{{ asset(objet.image.webPath) }}" alt="{{objet.image.alt}}">
 						</div>
 					{% endif %}
 					<div style="padding-top:5%">
 					<h3 style="padding-top:0%">{{objet.nom}}</h3>
-					<p><small>{{objet.typeObjet}}</small></p>
+					<p><small>{{objet.typeObjet.nom}}</small></p>
 					<p>{{objet.description|raw}}</p>
-					<p>{{objet.exposition}} - {{objet.salleStockage}} - {{objet.statutObjet}}</p>
+					<p>{{objet.exposition}} - {{objet.salleStockage.nom}} - {{objet.statutObjet.etat}}</p>
 					</div>
 					<div class="pull-right">
-						<a class="btn btn-success" href="{{ path('musee_blog_modifier', {'id' : objet.id}) }}">Modifier</a>
-						<a class="btn btn-danger" href="{{ path('musee_blog_supprimer', {'id' : objet.id}) }}">Supprimer</a>
+						<a class="btn btn-success" href="{{ path('musee_collection_modifier', {'id' : objet.id}) }}">Modifier</a>
+						<a class="btn btn-danger" href="{{ path('musee_collection_supprimer', {'id' : objet.id}) }}">Supprimer</a>
 					</div>
 				</div>
 			</div>
 		</div>
-	{% endfor %}
+	
 	
 {% endblock %}
