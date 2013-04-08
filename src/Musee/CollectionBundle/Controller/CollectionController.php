@@ -103,7 +103,7 @@ class CollectionController extends Controller
 	
 	public function afficherObjetAction($id)
 	{
-		$articles = $this -> getDoctrine()
+		$objets = $this -> getDoctrine()
 						 -> getManager()
 						 -> getRepository('MuseeCollectionBundle:Objet');
 		
