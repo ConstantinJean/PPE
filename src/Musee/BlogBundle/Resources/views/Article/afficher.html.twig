@@ -2,7 +2,7 @@
 
 {% extends "::layout.html.twig" %}
 {% block body %}
-	{% for article in articles %}
+	
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="offset2 span8 well">
@@ -27,7 +27,7 @@
 				</div>
 			</div>
 		</div>
-		{% render "MuseeBlogBundle:Article:ajouterCommentaire" with { article: article } %}
-	{% endfor %}
+		{% include "MuseeBlogBundle:Article:ajouterCommentaire.html.twig" %}
+	
 	
 {% endblock %}

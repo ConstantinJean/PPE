@@ -103,21 +103,15 @@ class ArticleController extends Controller
 	
 	public function afficherArticleAction($slug)
 	{
-		$articles = $this -> getDoctrine()
+		$article = $this -> getDoctrine()
 						 -> getManager()
 						 -> getRepository('MuseeBlogBundle:Article')
-						 -> findBySlug($slug);
+						 -> findOneBy(array('slug' => $slug));
 		
-		foreach ($articles as $article)
-		{
+		
 		$article -> setContenu(html_entity_decode($article-> getContenu()) ); 
-		}
 		
-		return $this -> render('MuseeBlogBundle:Article:afficher.html.twig', array('articles' => $articles));
-	}
-	
-	public function ajouterCommentaireAction(Article $article)
-	{
+		
 		$commentaire = new Commentaire();
 		
 		// On crée le FormBuilder grâce à la méthode du contrôleur
@@ -131,17 +125,21 @@ class ArticleController extends Controller
 			if($form->isValid()) //verification du formulaire
 			{
 				// On lie les commentaires à l'article
-				$commentaire->setArticle($article-> getId());
+				$commentaire->setArticle($article);
 				
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($commentaire);
 				$em->flush();
 				
-				return $this->redirect($this->generateUrl('musee_blog_afficher', array('article' => $article)));
+				return $this->redirect($this->generateUrl('musee_blog_afficher', array('slug' => $article -> getSlug())));
 			}
 		}
 		
-		return $this->render('MuseeBlogBundle:Article:ajouterCommentaire.html.twig', array(
-		'form' => $form->createView(),));
+		return $this -> render('MuseeBlogBundle:Article:afficher.html.twig', array('article' => $article, 'form' => $form->createView()));
+	}
+	
+	public function ajouterCommentaireAction(Article $article)
+	{
+		
 	}
 }
