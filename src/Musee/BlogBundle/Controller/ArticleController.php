@@ -135,11 +135,16 @@ class ArticleController extends Controller
 			}
 		}
 		
-		return $this -> render('MuseeBlogBundle:Article:afficher.html.twig', array('article' => $article, 'form' => $form->createView()));
-	}
-	
-	public function ajouterCommentaireAction(Article $article)
-	{
+		// Array pour les commentaires
+		$repository = $this->getDoctrine()
+                   ->getManager()
+                   ->getRepository('MuseeBlogBundle:Commentaire');
+ 
+		$listecomms = $repository->findBy(array('Date' => 'desc'));
 		
+		
+		$comm -> setContenu(html_entity_decode($listecomms-> getContenu()) );
+		
+		return $this -> render('MuseeBlogBundle:Article:afficher.html.twig', array('article' => $article, 'form' => $form->createView(), 'commentaire' => $comm));
 	}
 }
