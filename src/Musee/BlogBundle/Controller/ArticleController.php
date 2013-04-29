@@ -140,10 +140,7 @@ class ArticleController extends Controller
                    ->getManager()
                    ->getRepository('MuseeBlogBundle:Commentaire');
  
-		$listecomms = $repository->findBy(array('Date' => 'desc'));
-		
-		
-		$comm -> setContenu(html_entity_decode($listecomms-> getContenu()) );
+		$comm = $repository->findBy(array('Date' => 'desc'));
 		
 		return $this -> render('MuseeBlogBundle:Article:afficher.html.twig', array('article' => $article, 'form' => $form->createView(), 'commentaire' => $comm));
 	}
