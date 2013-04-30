@@ -140,8 +140,8 @@ class ArticleController extends Controller
                    ->getManager()
                    ->getRepository('MuseeBlogBundle:Commentaire');
  
-		$comm = $repository->findBy(array('Date' => 'desc'));
+		$comm = $repository->findCommentaireByArticle($article);
 		
-		return $this -> render('MuseeBlogBundle:Article:afficher.html.twig', array('article' => $article, 'form' => $form->createView(), 'commentaire' => $comm));
+		return $this -> render('MuseeBlogBundle:Article:afficher.html.twig', array('article' => $article, 'form' => $form->createView(), 'commentaires' => $comm));
 	}
 }
