@@ -13,26 +13,25 @@ security:
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
+        
         in_memory:
             memory:
                 users:
                     user:  { password: userpass, roles: [ 'ROLE_USER' ] }
                     admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
-        fos_userbundle:
-            id: fos_user.user_provider.username_email
+
+        musee_bdd:
+            entity: { class: MuseeUserBundle:User, property: username }
+       
     firewalls:
         main:
             pattern:        ^/
             anonymous:      true
-            provider:       fos_userbundle
-            form_login:
-                login_path: fos_user_security_login
-                check_path: fos_user_security_check
-            logout:
-                path:       fos_user_security_logout
-                target:     /museeKourou
-            remember_me:
-                key:        %secret%
+            provider:       musee_bdd
+            http_basic: ~
+
+                    
+            
 
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/

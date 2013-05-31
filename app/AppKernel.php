@@ -22,7 +22,6 @@ class AppKernel extends Kernel
             new Musee\SiteBundle\MuseeSiteBundle(),
 			new Musee\BlogBundle\MuseeBlogBundle(),
             new Musee\CollectionBundle\MuseeCollectionBundle(),
-			new FOS\UserBundle\FOSUserBundle(),
             new Musee\UserBundle\MuseeUserBundle(),
 			new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 			

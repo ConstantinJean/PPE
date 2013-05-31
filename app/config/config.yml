@@ -65,11 +65,3 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-# Fos_user Configuration
-fos_user:
-    db_driver: orm
-    firewall_name: main
-    user_class:    Musee\UserBundle\Entity\User
-    registration:
-        form: 
-            type: musee_user_registration

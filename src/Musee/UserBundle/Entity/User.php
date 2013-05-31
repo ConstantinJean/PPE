@@ -3,7 +3,7 @@
 namespace Musee\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use FOS\UserBundle\Entity\User as BaseUser;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
@@ -11,36 +11,45 @@ use FOS\UserBundle\Entity\User as BaseUser;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Musee\UserBundle\Entity\UserRepository")
  */
-class User extends BaseUser
+class User implements UserInterface
 {
     /**
-    * @ORM\Id
-    * @ORM\Column(type="integer")
-    * @ORM\GeneratedValue(strategy="AUTO")
-    */
-    protected $id;
-	
-	/**
-	* @var string
-	*
-    * @ORM\Column(name="name", type="string", length=255)
-	* @ORM\JoinColumn(nullable=false)
-    */
-	private $name;
-	
-	/**
-	* @var string
-	*
-    * @ORM\Column(name="firstName", type="string", length=255)
-	* @ORM\JoinColumn(nullable=false)
-    */
-	private $firstName;
-	
-	public function setEmail($email)
-	{
-         parent::setEmail($email);
-         $this->setUsername($email);
-	}
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255)
+     */
+    private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="salt", type="string", length=255)
+     */
+    private $salt;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=255)
+     */
+    private $password;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="isActive", type="boolean")
+     */
+    private $isActive;
+
 
     /**
      * Get id
@@ -53,48 +62,113 @@ class User extends BaseUser
     }
 
     /**
-     * Set name
+     * Set email
      *
-     * @param string $name
+     * @param string $email
      * @return User
      */
-    public function setName($name)
+    public function setEmail($email)
     {
-        $this->name = $name;
+        $this->email = $email;
     
         return $this;
     }
 
     /**
-     * Get name
+     * Get email
      *
      * @return string 
      */
-    public function getName()
+    public function getEmail()
     {
-        return $this->name;
+        return $this->email;
     }
+	
+	/**
+	 * Get username
+	 *
+	 * @return string
+	 */
+	public function getUsername()
+	{
+		return $this->email;
+	}
 
     /**
-     * Set firstName
+     * Set salt
      *
-     * @param string $firstName
+     * @param string $salt
      * @return User
      */
-    public function setFirstName($firstName)
+    public function setSalt($salt)
     {
-        $this->firstName = $firstName;
+        $this->salt = $salt;
     
         return $this;
     }
 
     /**
-     * Get firstName
+     * Get salt
      *
      * @return string 
      */
-    public function getFirstName()
+    public function getSalt()
     {
-        return $this->firstName;
+        return $this->salt;
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     * @return User
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    
+        return $this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string 
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     * @return User
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+    
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean 
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+	
+	public function getRoles()
+    {
+        return array('ROLE_USER');
+    }
+	
+	public function eraseCredentials()
+    {
     }
 }
