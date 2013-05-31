@@ -5,3 +5,7 @@ musee_user_homepage:
 musee_pageAdmin:
     pattern: /admin
     defaults: { _controller: MuseeUserBundle:Admin:pageAdmin }
+
+musee_create_user:
+    pattern: /user/create
+    defaults: { _controller: MuseeUserBundle:Registration:register }
