@@ -110,4 +110,9 @@ class CollectionController extends Controller
 		
 		return $this -> render('MuseeCollectionBundle:Collection:afficher.html.twig', array('objet' => $objet));
 	}
+	
+	public function planAction()
+	{
+		return $this -> render('MuseeCollectionBundle:Collection:plan.html.twig');
+	}
 }

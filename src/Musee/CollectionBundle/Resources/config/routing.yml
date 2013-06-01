@@ -19,3 +19,7 @@ musee_collection_modifier:
 musee_collection_afficher:
     pattern:  /afficher/{id}
     defaults: { _controller: MuseeCollectionBundle:Collection:afficherObjet }
+
+musee_collection_plan:
+    pattern:  /plan
+    defaults: { _controller: MuseeCollectionBundle:Collection:plan }
