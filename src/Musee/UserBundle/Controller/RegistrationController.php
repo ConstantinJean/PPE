@@ -16,7 +16,16 @@ class RegistrationController extends controller
 		$request = $this -> get('request');
 		if($request->getMethod() == 'POST')
 		{
+			
+			
 			$form->bind($request);
+			
+			$factory = $this->get('security.encoder_factory');
+			$encoder = $factory -> getEncoder($user);
+			$password = $encoder->encodePassword($user->getPassword(), $user->getSalt());
+			$user->setPassword($password);
+			$user->setUsername($user->getUsername());
+			
 			
 			if($form->isValid()) //verification du formulaire
 			{

@@ -9,3 +9,13 @@ musee_pageAdmin:
 musee_create_user:
     pattern: /user/create
     defaults: { _controller: MuseeUserBundle:Registration:register }
+
+login:
+    pattern: /login
+    defaults: { _controller: MuseeUserBundle:Security:login }
+
+login_check:
+    pattern: /login_check
+
+logout:
+    pattern: /logout

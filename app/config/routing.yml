@@ -15,6 +15,9 @@ musee_site:
     prefix:   /museeKourou
 
 
+    
+
+
 
 # Internal routing configuration to handle ESI
 # ****** WARNING ******

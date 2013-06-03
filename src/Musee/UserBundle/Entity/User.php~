@@ -178,17 +178,4 @@ class User implements UserInterface
 	public function eraseCredentials()
     {
     }
-
-    /**
-     * Set username
-     *
-     * @param string $username
-     * @return User
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
-    
-        return $this;
-    }
 }

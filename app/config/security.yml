@@ -24,13 +24,22 @@ security:
             entity: { class: MuseeUserBundle:User, property: username }
        
     firewalls:
-        main:
-            pattern:        ^/
-            anonymous:      true
-            provider:       musee_bdd
-            http_basic: ~
 
-                    
+        
+
+        secured_area:
+            pattern:    ^/
+            anonymous: ~
+            provider:  musee_bdd
+            form_login:
+                check_path: /login_check
+                login_path: /login
+                default_target_path: /museeKourou
+                always_use_default_target_path: true
+                
+            logout:
+                path:   /logout
+                target: /museeKourou
             
 
         dev:
@@ -41,14 +50,6 @@ security:
             pattern:  ^/demo/secured/login$
             security: false
 
-        secured_area:
-            pattern:    ^/demo/secured/
-            form_login:
-                check_path: /demo/secured/login_check
-                login_path: /demo/secured/login
-            logout:
-                path:   /demo/secured/logout
-                target: /demo/
             #anonymous: ~
             #http_basic:
             #    realm: "Secured Demo Area"
