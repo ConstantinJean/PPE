@@ -1,0 +1,83 @@
+<?php
+
+namespace Musee\UserBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Musee\UserBundle\Entity\User;
+use Symfony\Component\Security\Core\User\UserInterface;
+
+/**
+ * Adherent
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Musee\UserBundle\Entity\AdherentRepository")
+ */
+class Adherent extends User
+{
+     /**
+	 * @var string
+	 * 
+     * @ORM\Column(name="username", type="string", length=255, unique=true)
+     */
+    private $username;
+	
+	
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="AnneeAnciennete", type="date")
+     */
+    private $AnneeAnciennete;
+
+
+    /**
+     * Set AnneeAnciennete
+     *
+     * @param \DateTime $anneeAnciennete
+     * @return Adherent
+     */
+    public function setAnneeAnciennete($anneeAnciennete)
+    {
+        $this->AnneeAnciennete = $anneeAnciennete;
+    
+        return $this;
+    }
+
+    /**
+     * Get AnneeAnciennete
+     *
+     * @return \DateTime 
+     */
+    public function getAnneeAnciennete()
+    {
+        return $this->AnneeAnciennete;
+    }
+	
+	public function getRoles()
+    {
+        return array('ROLE_ADHERENT');
+    }
+	
+	/**
+	 * Get username
+	 *
+	 * @return string
+	 */
+	public function getUsername()
+	{
+		return $this->email;
+	}
+	
+	/**
+     * Set username
+     *
+     * @param string $username
+     * @return User
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    
+        return $this;
+    }
+}

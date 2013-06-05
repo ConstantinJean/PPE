@@ -3,16 +3,19 @@
 namespace Musee\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Musee\UserBundle\Entity\User;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * User
+ * Chercheur
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Musee\UserBundle\Entity\UserRepository")
+ * @ORM\Entity(repositoryClass="Musee\UserBundle\Entity\ChercheurRepository")
  */
-class User implements UserInterface
+class Chercheur implements UserInterface
 {
+    
+
     /**
      * @var integer
      *
@@ -56,6 +59,20 @@ class User implements UserInterface
      * @ORM\Column(name="isActive", type="boolean", nullable=true)
      */
     private $isActive;
+	
+	/**
+     * @var string
+     *
+     * @ORM\Column(name="NomThese", type="string", length=255)
+     */
+    private $NomThese;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="DomaineRecherche", type="string", length=255)
+     */
+    private $DomaineRecherche;
 
 
     /**
@@ -170,10 +187,6 @@ class User implements UserInterface
         return $this->isActive;
     }
 	
-	public function getRoles()
-    {
-        return array('ROLE_ADMIN');
-    }
 	
 	public function eraseCredentials()
     {
@@ -191,4 +204,61 @@ class User implements UserInterface
     
         return $this;
     }
+	
+	
+
+
+
+    /**
+     * Set NomThese
+     *
+     * @param string $nomThese
+     * @return Chercheur
+     */
+    public function setNomThese($nomThese)
+    {
+        $this->NomThese = $nomThese;
+    
+        return $this;
+    }
+
+    /**
+     * Get NomThese
+     *
+     * @return string 
+     */
+    public function getNomThese()
+    {
+        return $this->NomThese;
+    }
+
+    /**
+     * Set DomaineRecherche
+     *
+     * @param string $domaineRecherche
+     * @return Chercheur
+     */
+    public function setDomaineRecherche($domaineRecherche)
+    {
+        $this->DomaineRecherche = $domaineRecherche;
+    
+        return $this;
+    }
+
+    /**
+     * Get DomaineRecherche
+     *
+     * @return string 
+     */
+    public function getDomaineRecherche()
+    {
+        return $this->DomaineRecherche;
+    }
+	
+	public function getRoles()
+    {
+        return array('ROLE_CHERCHEUR');
+    }
+	
+	
 }
