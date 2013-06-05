@@ -1,5 +1,5 @@
 musee_collection_afficher_liste:
-    pattern:  /liste/{page}
+    pattern:  /liste/{idSalle}/{page}
     defaults: { _controller: MuseeCollectionBundle:Collection:afficherListeObjet }
     requirements:
         annee:  \d

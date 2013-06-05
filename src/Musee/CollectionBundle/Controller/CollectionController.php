@@ -8,17 +8,18 @@ use Musee\CollectionBundle\Form\ObjetType;
 
 class CollectionController extends Controller
 {
-	public function afficherListeObjetAction($page)
+	public function afficherListeObjetAction($page, $idSalle)
 	{
 		$objets = $this -> getDoctrine()
 						-> getManager()
 						-> getRepository('MuseeCollectionBundle:Objet')
-						-> getObjets(6, $page);
+						-> getObjets(6, $page, $idSalle);
 						
 		return $this -> render('MuseeCollectionBundle:Collection:afficherListe.html.twig', array(
 			'objets' => $objets,
 			'page' => $page,
-			'nombrePage' => ceil(count($objets)/6)
+			'nombrePage' => ceil(count($objets)/6),
+			'idSalle' => $idSalle
 		));
 	}
 	

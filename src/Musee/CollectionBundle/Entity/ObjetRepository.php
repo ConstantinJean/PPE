@@ -13,7 +13,7 @@ use Doctrine\ORM\Tools\Pagination\Paginator; //pour la pagination
  */
 class ObjetRepository extends EntityRepository
 {
-	public function getObjets($nombreParPage, $page)
+	public function getObjets($nombreParPage, $page, $idSalle)
 	{
 		$query = $this 	-> createQueryBuilder('o')
 						-> leftJoin('o.image', 'i')
@@ -22,6 +22,9 @@ class ObjetRepository extends EntityRepository
 							->addSelect('s')
 						-> leftJoin('o.typeObjet', 't')
 							->addSelect('t')
+						-> leftJoin('o.salleStockage', 'sS')
+							->where('sS.id = :id')
+							->setParameter('id', $idSalle)
 						-> orderBy('s.dateAquisition', 'DESC')
 						-> getQuery();
 						
