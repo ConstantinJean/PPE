@@ -2,12 +2,15 @@
 
 {% extends "::layout.html.twig" %}
 {% block body %}
-
-<div class="well">
-  <form method="post" {{ form_enctype(form) }}>
-    {{ form_widget(form) }}
-    <input type="submit" class="btn btn-primary" />
-  </form>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="offset2 span8">
+		  <form method="post" {{ form_enctype(form) }}>
+			{{ form_widget(form) }}
+			<input type="submit" class="btn btn-primary" />
+		  </form>
+		</div>
+	</div>
 </div>
 
 <!--  Pour mettre un label à chaque input dur form :{# {{ form_label(form.name, 'Votre nom') }} #} -->
