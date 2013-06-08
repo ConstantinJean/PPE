@@ -2,8 +2,15 @@ parameters:
 #    musee_user.example.class: Musee\UserBundle\Example
 
 services:
-    musee_user.registration.form.type:
-        class: Musee\UserBundle\Form\Type\RegistrationFormType
-        arguments: [%security.role_hierarchy.roles%]
+    musee_user.event_listener.email_confirmation_listener:
+        class: Musee\UserBundle\EventListener\EmailConfirmationListener
+        arguments: [@musee_user.mailer.mailer, @musee_user.util.generate_token, @router]
         tags:
-            - { name: form.type, alias: musee_user_registration }
+            - { name: kernel.event_subscriber }
+
+    musee_user.util.generate_token:
+        class: Musee\UserBundle\Util\TokenGenerator
+
+    musee_user.mailer.mailer:
+        class: Musee\UserBundle\Mailer\Mailer
+        arguments: [@mailer, @router, @templating]

@@ -34,13 +34,15 @@
 								
 								
 						</ul>
+
 						<div class="pull-right">
 							{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-								<a href="{{ path('fos_user_security_logout') }}" class="btn btn-primary btn-small">Déconnexion</a>
+								<a href="{{ path('logout') }}" class="btn btn-primary btn-small">Déconnexion</a>
 							{% else %}
-								<a href="{{ path('fos_user_security_login') }}" class="btn btn-primary btn-small">Connexion</a>
+								<a href="{{ path('login') }}" class="btn btn-primary btn-small">Connexion</a>
 							{% endif %}
 						</div>
+
 					</div>
 				</div>
 				

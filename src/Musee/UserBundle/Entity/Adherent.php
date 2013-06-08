@@ -3,15 +3,16 @@
 namespace Musee\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Musee\UserBundle\Entity\User;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * User
+ * Adherent
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Musee\UserBundle\Entity\UserRepository")
+ * @ORM\Entity(repositoryClass="Musee\UserBundle\Entity\AdherentRepository")
  */
-class User implements UserInterface
+class Adherent implements UserInterface
 {
     /**
      * @var integer
@@ -63,6 +64,20 @@ class User implements UserInterface
 	 * @ORM\Column(name="confirmationToken", type="string", length=255, nullable=true)
 	 */
 	protected $confirmationToken;
+	
+	/**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="AnneeAnciennete", type="date")
+     */
+    private $AnneeAnciennete;
+	
+	public function __construct()
+    {
+        $this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
+        $this->isActive = false;
+    }
+
 
     /**
      * Get id
@@ -176,10 +191,6 @@ class User implements UserInterface
         return $this->isActive;
     }
 	
-	public function getRoles()
-    {
-        return array('ROLE_ADMIN');
-    }
 	
 	public function eraseCredentials()
     {
@@ -196,5 +207,61 @@ class User implements UserInterface
         $this->username = $username;
     
         return $this;
+    }
+	
+    
+
+
+    /**
+     * Set AnneeAnciennete
+     *
+     * @param \DateTime $anneeAnciennete
+     * @return Adherent
+     */
+    public function setAnneeAnciennete($anneeAnciennete)
+    {
+        $this->AnneeAnciennete = $anneeAnciennete;
+    
+        return $this;
+    }
+
+    /**
+     * Get AnneeAnciennete
+     *
+     * @return \DateTime 
+     */
+    public function getAnneeAnciennete()
+    {
+        return $this->AnneeAnciennete;
+    }
+	
+	public function getRoles()
+    {
+        return array('ROLE_ADHERENT');
+    }
+	
+	
+
+    /**
+     * Set confirmationToken
+     *
+     * @param string $confirmationToken
+     * @return Adherent
+     */
+    public function setConfirmationToken($confirmationToken)
+    {
+        $this->confirmationToken = $confirmationToken;
+    
+        return $this;
+    }
+
+    /**
+     * Get confirmationToken
+     *
+     * @return string 
+     */
+    public function getConfirmationToken()
+    {
+        return $this->confirmationToken;
     }
 }

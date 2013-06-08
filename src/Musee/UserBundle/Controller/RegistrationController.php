@@ -1,71 +1,188 @@
 <?php
 
-
-
 namespace Musee\UserBundle\Controller;
 
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use FOS\UserBundle\FOSUserEvents;
-use FOS\UserBundle\Event\FormEvent;
-use FOS\UserBundle\Event\GetResponseUserEvent;
-use FOS\UserBundle\Event\UserEvent;
-use FOS\UserBundle\Event\FilterUserResponseEvent;
-use Symfony\Component\DependencyInjection\ContainerAware;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Musee\UserBundle\Entity\User;
+use Musee\UserBundle\Form\UserType;
+use Musee\UserBundle\Entity\Chercheur;
+use Musee\UserBundle\Form\ChercheurType;
+use Musee\UserBundle\Entity\Adherent;
+use Musee\UserBundle\Form\AdherentType;
+use Musee\UserBundle\UserBundleEvents;
+use Musee\UserBundle\Event\FormEvent;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use FOS\UserBundle\Model\UserInterface;
-use FOS\UserBundle\Controller\RegistrationController as BaseController;
 
-
-
-class RegistrationController extends BaseController
+class RegistrationController extends controller
 {
-    public function registerAction(Request $request)
-    {
-        /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
-        $formFactory = $this->container->get('fos_user.registration.form.factory');
-        /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
-        $userManager = $this->container->get('fos_user.user_manager');
-        /** @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface */
-        $dispatcher = $this->container->get('event_dispatcher');
-
-        $user = $userManager->createUser();
-        $user->setEnabled(true);
-
-        $dispatcher->dispatch(FOSUserEvents::REGISTRATION_INITIALIZE, new UserEvent($user, $request));
-
-        $form = $formFactory->createForm();
-        $form->setData($user);
-
-        if ('POST' === $request->getMethod()) {
-            $form->bind($request);
-
-            if ($form->isValid()) {
-                $event = new FormEvent($form, $request);
-                $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
-
-                $userManager->updateUser($user);
-				$formData = $this->container -> get('request')->request->get($form->getName());           
-				$role = $formData['role'];
-
-				$user->addRole($role);
+    public function registerAdminAction()
+	{
+		$dispatcher = $this->get('event_dispatcher');
+ 
+		$user = new User;
+		$form = $this->createForm(new UserType, $user);
+		
+		$request = $this -> get('request');
+		if($request->getMethod() == 'POST')
+		{
+			
+			
+			$form->bind($request);
+			
+			$factory = $this->get('security.encoder_factory');
+			$encoder = $factory -> getEncoder($user);
+			$password = $encoder->encodePassword($user->getPassword(), $user->getSalt());
+			$user->setPassword($password);
+			$user->setUsername($user->getUsername());
+			
+			
+			if($form->isValid()) //verification du formulaire
+			{
+				$event = new FormEvent($form, $request);
+				$dispatcher->dispatch(UserBundleEvents::onRegistrationSuccess, $event);
 				
-
-                if (null === $response = $event->getResponse()) {
-                    $url = $this->container->get('router')->generate('fos_user_registration_confirmed');
-                    $response = new RedirectResponse($url);
-                }
-
-                $dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
-
-                return $response;
-            }
-        }
-
-        return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:register.html.'.$this->getEngine(), array(
-            'form' => $form->createView(),
-        ));
-    }
-
+				$em = $this->getDoctrine()->getManager();
+				$em->persist($user);
+				$em->flush();
+				
+				return $this->redirect($this->generateUrl('musee_accueil'));
+			}
+		}
+		
+		return $this->render('MuseeUserBundle:User:registration.html.twig', array(
+		'form' => $form->createView(),));
+	}
+	
+	public function registerAdherentAction()
+	{
+		$dispatcher = $this->get('event_dispatcher');
+		$user = new Adherent;
+		$form = $this->createForm(new AdherentType, $user);
+		
+		$request = $this -> get('request');
+		if($request->getMethod() == 'POST')
+		{
+			
+			
+			$form->bind($request);
+			
+			$factory = $this->get('security.encoder_factory');
+			$encoder = $factory -> getEncoder($user);
+			$password = $encoder->encodePassword($user->getPassword(), $user->getSalt());
+			$user->setPassword($password);
+			$user->setUsername($user->getUsername());
+			
+			
+			if($form->isValid()) //verification du formulaire
+			{
+				$event = new FormEvent($form, $request);
+				$dispatcher->dispatch(UserBundleEvents::onRegistrationSuccess, $event);
+				
+				$em = $this->getDoctrine()->getManager();
+				$em->persist($user);
+				$em->flush();
+				
+				return $this->redirect($this->generateUrl('musee_accueil'));
+			}
+		}
+		
+		return $this->render('MuseeUserBundle:User:registration.html.twig', array(
+		'form' => $form->createView(),));
+	}
+	
+	
+	public function registerChercheurAction()
+	{
+		$dispatcher = $this->get('event_dispatcher');
+		$user = new Chercheur;
+		$form = $this->createForm(new ChercheurType, $user);
+		
+		$request = $this -> get('request');
+		if($request->getMethod() == 'POST')
+		{
+			
+			
+			$form->bind($request);
+			
+			$factory = $this->get('security.encoder_factory');
+			$encoder = $factory -> getEncoder($user);
+			$password = $encoder->encodePassword($user->getPassword(), $user->getSalt());
+			$user->setPassword($password);
+			$user->setUsername($user->getUsername());
+			
+			
+			if($form->isValid()) //verification du formulaire
+			{
+				$event = new FormEvent($form, $request);
+				$dispatcher->dispatch(UserBundleEvents::onRegistrationSuccess, $event);
+			
+				$em = $this->getDoctrine()->getManager();
+				$em->persist($user);
+				$em->flush();
+				
+				return $this->redirect($this->generateUrl('musee_accueil'));
+			}
+		}
+		
+		return $this->render('MuseeUserBundle:User:registration.html.twig', array(
+		'form' => $form->createView(),));
+	}
+	
+	public function confirmAction($token)
+	{
+		$user;
+		
+		//test pour user
+		if(null !== $this->getDoctrine()
+                   ->getManager()
+                   ->getRepository('MuseeUserBundle:User')
+				   ->findOneByConfirmationToken($token))
+		{
+			$user = $this->getDoctrine()
+                   ->getManager()
+                   ->getRepository('MuseeUserBundle:User')
+				   ->findOneByConfirmationToken($token);
+		}
+		
+		//test pour adherent
+		elseif(null !== $this->getDoctrine()
+                   ->getManager()
+                   ->getRepository('MuseeUserBundle:Adherent')
+				   ->findOneByConfirmationToken($token))
+		{
+			$user = $this->getDoctrine()
+                   ->getManager()
+                   ->getRepository('MuseeUserBundle:Adherent')
+				   ->findOneByConfirmationToken($token);
+		}
+		
+		//test pour chercheur
+		elseif(null !== $this->getDoctrine()
+                   ->getManager()
+                   ->getRepository('MuseeUserBundle:Chercheur')
+				   ->findOneByConfirmationToken($token))
+		{
+			$user = $this->getDoctrine()
+                   ->getManager()
+                   ->getRepository('MuseeUserBundle:Chercheur')
+				   ->findOneByConfirmationToken($token);
+		}
+		
+		else
+		{
+			throw new NotFoundHttpException(sprintf('The user with confirmation token "%s" does not exist', $token));
+		}
+		
+		$user->setConfirmationToken(null);
+        $user->setIsActive(true);
+		
+		$em = $this->getDoctrine()-> getManager();
+		$em -> flush();
+		
+		$this->get('session')->getFlashBag()->add('notice', 'Votre inscription est terminée. Veuillez vous connecter.');
+		
+		return $this->redirect($this->generateUrl('login'));
+		
+		
+	}
 }

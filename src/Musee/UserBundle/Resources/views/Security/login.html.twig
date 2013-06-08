@@ -1,32 +1,37 @@
-{% extends "MuseeUserBundle::layout.html.twig" %}
+{# src/Musee/UserBundle/Resources/views/Security/login.html.twig #}
 
-{% block fos_user_content %}
-{% if error %}
-    <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
-{% endif %}
+{% extends "::layout.html.twig" %}
+{% block body %}
+	{% if error %}
+		<div>{{ error.message }}</div>
+	{% endif %}
+	
+	{% for flashMessage in app.session.flashbag.get('notice') %}
+    <div class="offset4 span4 text-center well">
+        {{ flashMessage }}
+    </div>
+{% endfor %}
 
-<div class="row-fluid" style="padding-top: 5%">
-	<div class="offset3 span6 ">
-		<fieldset>
-			<form action="{{ path('fos_user_security_check') }}" class="well" method="post">
-				<legend>Connectez vous à votre compte</legend>
-				
-				<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class = "offset4 span4 text-center ">
+				<form action="{{ path('login_check') }}" method="post" class="well">
+					<label for="username">Login :</label>
+					<input type="email" id="username" name="_username" value="{{ last_username }}" />
 
-				<label for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
-				<input type="email" id="username" name="_username" value="{{ last_username }}" required="required" />
+					<label for="password">Mot de passe :</label>
+					<input type="password" id="password" name="_password" />
 
-				<label for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
-				<input type="password" id="password" name="_password" required="required" />
-				
-				<label for="remember_me">
-				<input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-				{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
-				<br>
+					{#
+						Si vous voulez controler l'URL vers laquelle l'utilisateur est redirigé en cas de succès
+						(plus de détails ci-dessous)
+						<input type="hidden" name="_target_path" value="/account" />
+					#}
 
-				<input type="submit" id="_submit" name="_submit" value="{{ 'Connexion'|trans({}, 'FOSUserBundle') }}" class="btn btn-primary btn-large"/>
-			</form>
-		<fieldset>
+					<br/><button type="submit" class="btn btn-primary">login</button>
+				</form>
+			</div>
+		</div>
 	</div>
-</div>
-{% endblock fos_user_content %}
+
+{% endblock %}

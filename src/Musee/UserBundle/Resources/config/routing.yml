@@ -5,3 +5,29 @@ musee_user_homepage:
 musee_pageAdmin:
     pattern: /admin
     defaults: { _controller: MuseeUserBundle:Admin:pageAdmin }
+
+musee_create_user_admin:
+    pattern: /user/createAdmin
+    defaults: { _controller: MuseeUserBundle:Registration:registerAdmin }
+
+musee_create_user_adherent:
+    pattern: /user/createAdherent
+    defaults: { _controller: MuseeUserBundle:Registration:registerAdherent }
+
+musee_create_user_chercheur:
+    pattern: /user/createChercheur
+    defaults: { _controller: MuseeUserBundle:Registration:registerChercheur }
+
+musee_confirm_inscription:
+    pattern: /user/confirm/{token}
+    defaults: { _controller: MuseeUserBundle:Registration:confirm }
+
+login:
+    pattern: /login
+    defaults: { _controller: MuseeUserBundle:Security:login }
+
+login_check:
+    pattern: /login_check
+
+logout:
+    pattern: /logout
