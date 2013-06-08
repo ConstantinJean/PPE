@@ -6,6 +6,8 @@ security:
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
         Musee\UserBundle\Entity\User: sha512
+        Musee\UserBundle\Entity\Adherent: sha512
+        Musee\UserBundle\Entity\Chercheur: sha512
 
 
     role_hierarchy:
@@ -13,16 +15,53 @@ security:
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
+        
+        musee_bdd:
+            chain:
+                providers: [musee_admin, musee_adherent, musee_chercheur]
+
         in_memory:
             memory:
                 users:
                     user:  { password: userpass, roles: [ 'ROLE_USER' ] }
                     admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+<<<<<<< HEAD
         
     firewalls:
         main:
             pattern:        ^/
             anonymous:      true
+=======
+
+        
+
+        musee_admin:
+            entity: { class: MuseeUserBundle:User, property: username }
+        
+        musee_adherent:
+            entity: { class: MuseeUserBundle:Adherent, property: username }
+
+        musee_chercheur:
+            entity: { class: MuseeUserBundle:Chercheur, property: username }
+
+    firewalls:
+
+        
+
+        secured_area:
+            pattern:    ^/
+            anonymous: ~
+            provider:  musee_bdd
+            form_login:
+                check_path: /login_check
+                login_path: /login
+                default_target_path: /museeKourou
+                always_use_default_target_path: true
+                
+            logout:
+                path:   /logout
+                target: /museeKourou
+>>>>>>> user_management
             
 
         dev:
@@ -33,14 +72,6 @@ security:
             pattern:  ^/demo/secured/login$
             security: false
 
-        secured_area:
-            pattern:    ^/demo/secured/
-            form_login:
-                check_path: /demo/secured/login_check
-                login_path: /demo/secured/login
-            logout:
-                path:   /demo/secured/logout
-                target: /demo/
             #anonymous: ~
             #http_basic:
             #    realm: "Secured Demo Area"

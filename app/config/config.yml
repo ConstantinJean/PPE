@@ -57,3 +57,16 @@ stof_doctrine_extensions:
         default:
             sluggable: true
 
+<<<<<<< HEAD
+=======
+# Swiftmailer Configuration
+swiftmailer:
+    transport:  smtp
+    encryption: ssl
+    auth_mode:  login
+    host:       smtp.gmail.com
+    username:   %mailer_user%
+    password:   %mailer_password%
+    port:       465
+
+>>>>>>> user_management
