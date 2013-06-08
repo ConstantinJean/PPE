@@ -1,7 +1,0 @@
-musee_user_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: MuseeUserBundle:Default:index }
-
-musee_pageAdmin:
-    pattern: /admin
-    defaults: { _controller: MuseeUserBundle:Admin:pageAdmin }
