@@ -61,6 +61,13 @@ class Chercheur implements UserInterface
     private $isActive;
 	
 	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="confirmationToken", type="string", length=255, nullable=true)
+	 */
+	protected $confirmationToken;
+	
+	/**
      * @var string
      *
      * @ORM\Column(name="NomThese", type="string", length=255)
@@ -73,6 +80,12 @@ class Chercheur implements UserInterface
      * @ORM\Column(name="DomaineRecherche", type="string", length=255)
      */
     private $DomaineRecherche;
+	
+	public function __construct()
+    {
+        $this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
+        $this->isActive = false;
+    }
 
 
     /**
@@ -261,4 +274,27 @@ class Chercheur implements UserInterface
     }
 	
 	
+
+    /**
+     * Set confirmationToken
+     *
+     * @param string $confirmationToken
+     * @return Chercheur
+     */
+    public function setConfirmationToken($confirmationToken)
+    {
+        $this->confirmationToken = $confirmationToken;
+    
+        return $this;
+    }
+
+    /**
+     * Get confirmationToken
+     *
+     * @return string 
+     */
+    public function getConfirmationToken()
+    {
+        return $this->confirmationToken;
+    }
 }

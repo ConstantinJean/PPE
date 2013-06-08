@@ -9,11 +9,16 @@ use Musee\UserBundle\Entity\Chercheur;
 use Musee\UserBundle\Form\ChercheurType;
 use Musee\UserBundle\Entity\Adherent;
 use Musee\UserBundle\Form\AdherentType;
+use Musee\UserBundle\UserBundleEvents;
+use Musee\UserBundle\Event\FormEvent;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class RegistrationController extends controller
 {
     public function registerAdminAction()
 	{
+		$dispatcher = $this->get('event_dispatcher');
+ 
 		$user = new User;
 		$form = $this->createForm(new UserType, $user);
 		
@@ -33,6 +38,9 @@ class RegistrationController extends controller
 			
 			if($form->isValid()) //verification du formulaire
 			{
+				$event = new FormEvent($form, $request);
+				$dispatcher->dispatch(UserBundleEvents::onRegistrationSuccess, $event);
+				
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($user);
 				$em->flush();
@@ -47,6 +55,7 @@ class RegistrationController extends controller
 	
 	public function registerAdherentAction()
 	{
+		$dispatcher = $this->get('event_dispatcher');
 		$user = new Adherent;
 		$form = $this->createForm(new AdherentType, $user);
 		
@@ -66,6 +75,9 @@ class RegistrationController extends controller
 			
 			if($form->isValid()) //verification du formulaire
 			{
+				$event = new FormEvent($form, $request);
+				$dispatcher->dispatch(UserBundleEvents::onRegistrationSuccess, $event);
+				
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($user);
 				$em->flush();
@@ -81,6 +93,7 @@ class RegistrationController extends controller
 	
 	public function registerChercheurAction()
 	{
+		$dispatcher = $this->get('event_dispatcher');
 		$user = new Chercheur;
 		$form = $this->createForm(new ChercheurType, $user);
 		
@@ -100,6 +113,9 @@ class RegistrationController extends controller
 			
 			if($form->isValid()) //verification du formulaire
 			{
+				$event = new FormEvent($form, $request);
+				$dispatcher->dispatch(UserBundleEvents::onRegistrationSuccess, $event);
+			
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($user);
 				$em->flush();
@@ -110,5 +126,63 @@ class RegistrationController extends controller
 		
 		return $this->render('MuseeUserBundle:User:registration.html.twig', array(
 		'form' => $form->createView(),));
+	}
+	
+	public function confirmAction($token)
+	{
+		$user;
+		
+		//test pour user
+		if(null !== $this->getDoctrine()
+                   ->getManager()
+                   ->getRepository('MuseeUserBundle:User')
+				   ->findOneByConfirmationToken($token))
+		{
+			$user = $this->getDoctrine()
+                   ->getManager()
+                   ->getRepository('MuseeUserBundle:User')
+				   ->findOneByConfirmationToken($token);
+		}
+		
+		//test pour adherent
+		elseif(null !== $this->getDoctrine()
+                   ->getManager()
+                   ->getRepository('MuseeUserBundle:Adherent')
+				   ->findOneByConfirmationToken($token))
+		{
+			$user = $this->getDoctrine()
+                   ->getManager()
+                   ->getRepository('MuseeUserBundle:Adherent')
+				   ->findOneByConfirmationToken($token);
+		}
+		
+		//test pour chercheur
+		elseif(null !== $this->getDoctrine()
+                   ->getManager()
+                   ->getRepository('MuseeUserBundle:Chercheur')
+				   ->findOneByConfirmationToken($token))
+		{
+			$user = $this->getDoctrine()
+                   ->getManager()
+                   ->getRepository('MuseeUserBundle:Chercheur')
+				   ->findOneByConfirmationToken($token);
+		}
+		
+		else
+		{
+			throw new NotFoundHttpException(sprintf('The user with confirmation token "%s" does not exist', $token));
+		}
+		
+		$user->setConfirmationToken(null);
+        $user->setIsActive(true);
+		
+		$em = $this->getDoctrine()-> getManager();
+		$em -> flush();
+		
+		$this->get('session')->getFlashBag()->add('notice', 'Votre inscription est terminée. Veuillez vous connecter.');
+		
+		return $this->redirect($this->generateUrl('login'));
+		
+		
 	}
 }

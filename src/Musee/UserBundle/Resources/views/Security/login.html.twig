@@ -5,6 +5,12 @@
 	{% if error %}
 		<div>{{ error.message }}</div>
 	{% endif %}
+	
+	{% for flashMessage in app.session.flashbag.get('notice') %}
+    <div class="offset4 span4 text-center well">
+        {{ flashMessage }}
+    </div>
+{% endfor %}
 
 	<div class="container-fluid">
 		<div class="row-fluid">

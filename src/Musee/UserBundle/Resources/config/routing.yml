@@ -18,6 +18,10 @@ musee_create_user_chercheur:
     pattern: /user/createChercheur
     defaults: { _controller: MuseeUserBundle:Registration:registerChercheur }
 
+musee_confirm_inscription:
+    pattern: /user/confirm/{token}
+    defaults: { _controller: MuseeUserBundle:Registration:confirm }
+
 login:
     pattern: /login
     defaults: { _controller: MuseeUserBundle:Security:login }

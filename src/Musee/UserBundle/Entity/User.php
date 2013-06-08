@@ -56,7 +56,20 @@ class User implements UserInterface
      * @ORM\Column(name="isActive", type="boolean", nullable=true)
      */
     private $isActive;
-
+	
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="confirmationToken", type="string", length=255, nullable=true)
+	 */
+	protected $confirmationToken;
+	
+	
+	public function __construct()
+    {
+        $this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
+        $this->isActive = false;
+    }
 
     /**
      * Get id
@@ -190,5 +203,28 @@ class User implements UserInterface
         $this->username = $username;
     
         return $this;
+    }
+
+    /**
+     * Set confirmationToken
+     *
+     * @param string $confirmationToken
+     * @return User
+     */
+    public function setConfirmationToken($confirmationToken)
+    {
+        $this->confirmationToken = $confirmationToken;
+    
+        return $this;
+    }
+
+    /**
+     * Get confirmationToken
+     *
+     * @return string 
+     */
+    public function getConfirmationToken()
+    {
+        return $this->confirmationToken;
     }
 }

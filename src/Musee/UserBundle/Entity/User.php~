@@ -27,14 +27,14 @@ class User implements UserInterface
 	 * 
      * @ORM\Column(name="username", type="string", length=255, unique=true)
      */
-    private $username;
+    protected $username;
 	
 	/**
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
      */
-    private $email;
+    protected $email;
 
     /**
      * @var string
@@ -56,7 +56,13 @@ class User implements UserInterface
      * @ORM\Column(name="isActive", type="boolean", nullable=true)
      */
     private $isActive;
-
+	
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="confirmationToken", type="string", length=255, nullable=true)
+	 */
+	protected $confirmationToken;
 
     /**
      * Get id
@@ -172,10 +178,23 @@ class User implements UserInterface
 	
 	public function getRoles()
     {
-        return array('ROLE_USER');
+        return array('ROLE_ADMIN');
     }
 	
 	public function eraseCredentials()
     {
+    }
+
+    /**
+     * Set username
+     *
+     * @param string $username
+     * @return User
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    
+        return $this;
     }
 }

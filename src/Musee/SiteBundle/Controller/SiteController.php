@@ -32,9 +32,9 @@ class SiteController extends Controller
 				$mailer = $this->get('mailer');
 				$message = \Swift_Message::newInstance()			
 					->setSubject($mail->getSubject())
-					->setFrom($mail->getEmail())				
-					->setTo('queelev@gmail.com')
-					->setBody($mail->getBody().'<br/>'.$mail->getName());
+					->setFrom('kustomkadiak@gmail.com')				
+					->setTo('constantin.jean2111@gmail.com')
+					->setBody($mail->getBody().'<br/>'.$mail->getName().'<br/> <hr/>'.$mail->getEmail());
 					
 				$this->get('mailer')->send($message);
   
