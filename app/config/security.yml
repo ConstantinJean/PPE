@@ -25,15 +25,6 @@ security:
                 users:
                     user:  { password: userpass, roles: [ 'ROLE_USER' ] }
                     admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
-        
-    firewalls:
-        main:
-            pattern:        ^/
-            anonymous:      true
-
-
-        
-
         musee_admin:
             entity: { class: MuseeUserBundle:User, property: username }
         

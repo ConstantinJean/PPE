@@ -1,3 +1,6 @@
+musee_user:
+    resource: "@MuseeUserBundle/Resources/config/routing.yml"
+    prefix:   /
 
 musee_collection:
     resource: "@MuseeCollectionBundle/Resources/config/routing.yml"
@@ -11,14 +14,7 @@ musee_site:
     resource: "@MuseeSiteBundle/Resources/config/routing.yml"
     prefix:   /museeKourou
 
-<<<<<<< HEAD
-=======
 
-    
-
-
-
->>>>>>> user_management
 # Internal routing configuration to handle ESI
 # ****** WARNING ******
 # This route should be enabled with caution as it can open a security vulnerability
