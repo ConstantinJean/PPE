@@ -25,13 +25,12 @@ security:
                 users:
                     user:  { password: userpass, roles: [ 'ROLE_USER' ] }
                     admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
-<<<<<<< HEAD
         
     firewalls:
         main:
             pattern:        ^/
             anonymous:      true
-=======
+
 
         
 
@@ -61,7 +60,7 @@ security:
             logout:
                 path:   /logout
                 target: /museeKourou
->>>>>>> user_management
+
             
 
         dev:

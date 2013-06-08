@@ -22,10 +22,7 @@ class AppKernel extends Kernel
             new Musee\SiteBundle\MuseeSiteBundle(),
 			new Musee\BlogBundle\MuseeBlogBundle(),
             new Musee\CollectionBundle\MuseeCollectionBundle(),
-<<<<<<< HEAD
-=======
             new Musee\UserBundle\MuseeUserBundle(),
->>>>>>> user_management
 			new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 			
         );

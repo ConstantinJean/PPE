@@ -57,8 +57,7 @@ stof_doctrine_extensions:
         default:
             sluggable: true
 
-<<<<<<< HEAD
-=======
+
 # Swiftmailer Configuration
 swiftmailer:
     transport:  smtp
@@ -69,4 +68,3 @@ swiftmailer:
     password:   %mailer_password%
     port:       465
 
->>>>>>> user_management
