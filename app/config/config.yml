@@ -57,19 +57,3 @@ stof_doctrine_extensions:
         default:
             sluggable: true
 
-# Swiftmailer Configuration
-swiftmailer:
-    transport: "%mailer_transport%"
-    host:      "%mailer_host%"
-    username:  "%mailer_user%"
-    password:  "%mailer_password%"
-    spool:     { type: memory }
-
-# Fos_user Configuration
-fos_user:
-    db_driver: orm
-    firewall_name: main
-    user_class:    Musee\UserBundle\Entity\User
-    registration:
-        form: 
-            type: musee_user_registration
