@@ -52,7 +52,7 @@ class RegistrationController extends controller
 			}
 		}
 		
-		return $this->render('MuseeUserBundle:User:registration.html.twig', array(
+		return $this->render('MuseeUserBundle:User:registrationAdmin.html.twig', array(
 		'form' => $form->createView(),));
 	}
 	
@@ -92,7 +92,7 @@ class RegistrationController extends controller
 			}
 		}
 		
-		return $this->render('MuseeUserBundle:User:registration.html.twig', array(
+		return $this->render('MuseeUserBundle:User:registrationAdherent.html.twig', array(
 		'form' => $form->createView(),));
 	}
 	
@@ -132,7 +132,7 @@ class RegistrationController extends controller
 			}
 		}
 		
-		return $this->render('MuseeUserBundle:User:registration.html.twig', array(
+		return $this->render('MuseeUserBundle:User:registrationChercheur.html.twig', array(
 		'form' => $form->createView(),));
 	}
 	
