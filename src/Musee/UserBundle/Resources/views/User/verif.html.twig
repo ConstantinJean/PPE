@@ -1,0 +1,7 @@
+{% block body %}
+	{{user.username}} <br/>
+	mdp : {{user.password}} <br/><br/>
+	salt : {{user.salt}}<br/>
+	token : {{user.confirmationToken}}
+	
+{% endblock %}

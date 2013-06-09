@@ -2,6 +2,10 @@ parameters:
 #    musee_user.example.class: Musee\UserBundle\Example
 
 services:
+#    musee_user.example:
+#        class: %musee_user.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+
     musee_user.event_listener.email_confirmation_listener:
         class: Musee\UserBundle\EventListener\EmailConfirmationListener
         arguments: [@musee_user.mailer.mailer, @musee_user.util.generate_token, @router]
