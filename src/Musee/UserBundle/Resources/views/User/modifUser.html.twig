@@ -1,0 +1,15 @@
+{% extends "::layout.html.twig" %}
+	{% block body %}
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="offset4 span4 well">
+					<h2>Modifier Utilisateur</h2>
+					<hr/>
+					<form method="post" {{ form_enctype(form) }}>
+						{{ form_widget(form) }}
+						<input type="submit" class="btn btn-primary" />
+					</form>
+				</div>
+			</div>
+		</div>
+	{% endblock %}

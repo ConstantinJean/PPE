@@ -76,7 +76,7 @@ class SiteController extends Controller
 	
 	public function registerAction()
 	{
-		return $this -> render('MuseeSiteBundle:Site:register.html.twig');
+		return $this -> redirect($this->generateUrl('musee_create_user_admin'));
 	}
 	
 	public function afficherModifAction($page)
