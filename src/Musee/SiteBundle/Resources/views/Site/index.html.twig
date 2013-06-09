@@ -5,30 +5,99 @@
 {% block body %}
 	<div class="container-fluid">	
 		<div class="row-fluid">
-			<div class="span5 ">
+			<div class="offset2 span8 well">
 				<div id="myCarousel" class="carousel slide">
 				  <div class="carousel-inner thumbnail">
 					<div class="item active"> <img alt="" src="{{ asset('style/hubble.jpg') }}"/>
 					  <div class="carousel-caption">
-						<p>Photo Hubble</p>
+						<p>Photo d'une nébuleuse par le satellite Hubble.</p>
 					  </div>
 					</div>
 					<div class="item"> <img alt="" src="{{ asset('style/rover.jpg') }}"/>
 					  <div class="carousel-caption">
-						<p>Rover Curiosity</p>
+						<p>Le rover Curiosity sur Mars par lui-même.</p>
 					  </div>
 					</div>
 					<div class="item"> <img alt="" src="{{ asset('style/ariane.jpg') }}"/>
 					  <div class="carousel-caption">
-						<p>Décolage Ariane</p>
+						<p>Décolage de la fusée Ariane.</p>
 					  </div>
 					</div>
 				  </div>
 				  <a class="carousel-control left" data-slide="prev" href="#myCarousel">‹</a>
 				  <a class="carousel-control right" data-slide="next" href="#myCarousel">›</a>
 				</div>
+			</div>	
+		</div>
+	</div>
+	{% for article in articles %}
+	<div class="container-fluid">	
+		<div class="row-fluid">
+			<div class="offset2 span8 well">
+				{% if article.image is not null %}
+					<div class="pull-left thumbnail span4" style="margin-right:5%; margin-left:0%">
+						<img src="{{ asset(article.image.webPath) }}" alt="{{article.image.alt}}">
+					</div>
+				{% endif %}
+				<div style="padding-top:5%">
+				<h3 style="padding-top:0%">{{article.titre}}</h3>
+				<p><small>{{article.date|date('d-m-Y')}}</small></p>
+				<p>{{article.contenu|raw}}</p>
+				<p>{{article.auteur}}</p>
+				</div>
 			</div>
 		</div>
+	</div>
+	{% endfor %}
+	<div class="container-fluid">	
+		{% for objet in objets %}
+			{% if loop.index is odd %}
+			<div class="row-fluid">
+				<div class="offset1 span5 well">
+					{% if objet.image is not null %}
+					<div class="thumbnail pull-left span6" style="margin-right:5%">
+						<img src="{{ asset(objet.image.webPath) }}" alt="{{objet.image.alt}}">
+					</div>
+					{% endif %}
+					<div style="padding-top:5%">
+						<p><b>Nom de l'objet: </b>{{objet.nom}}</p>
+						<p><b>Description : </b>{{objet.description}}</p>
+						<p><b>Exposé : </b>
+						{% if objet.exposition == true %}
+							oui
+						{% else %}
+							non
+						{% endif %}	
+						</p>
+					</div>
+				</div>
+			
+			{% elseif loop.index is even %}
+				<div class="span5 well">
+					{% if objet.image is not null %}
+					<div class="thumbnail pull-left span6" style="margin-right:5%">
+						<img src="{{ asset(objet.image.webPath) }}" alt="{{objet.image.alt}}">
+					</div>
+					{% endif %}
+					<div style="padding-top:5%">
+						<p><b>Nom de l'objet: </b>{{objet.nom}}</p> 
+						<p><b>Description : </b>{{objet.description}}</p>
+						<p><b>Exposé : </b>
+						{% if objet.exposition == true %}
+							oui
+						{% else %}
+							non
+						{% endif %}
+						</p>
+					</div>				
+				</div>
+			</div>
+			{% endif %}
+			{% if loop.last is not even %}
+			</div>
+			{% endif %}
+			
+		{% endfor %}
 	</div>
 	{% block script%}
 		<script>

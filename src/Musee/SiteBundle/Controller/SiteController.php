@@ -10,7 +10,27 @@ class SiteController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('MuseeSiteBundle:Site:index.html.twig');
+		$articles = $this -> getDoctrine()
+						 -> getManager()
+						 -> getRepository('MuseeBlogBundle:Article')
+						 -> getArticle(1, 1);
+						 
+		foreach ($articles as $article)
+		{
+		$article -> setContenu(html_entity_decode($article-> getContenu()) ); 
+		}				 
+		
+		$repository = $this -> getDoctrine()
+						 -> getManager()
+						 -> getRepository('MuseeCollectionBundle:Objet');
+						 
+		$objets = $repository->findBy(array('exposition' => '1'),
+                                     array(),
+                                     2,
+                                     0);
+						 
+        return $this->render('MuseeSiteBundle:Site:index.html.twig', 
+				array('articles' => $articles, 'objets' => $objets));
     }
 	
 	public function aProposAction()
