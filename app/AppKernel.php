@@ -22,9 +22,8 @@ class AppKernel extends Kernel
             new Musee\SiteBundle\MuseeSiteBundle(),
 			new Musee\BlogBundle\MuseeBlogBundle(),
             new Musee\CollectionBundle\MuseeCollectionBundle(),
-            new Musee\UserBundle\MuseeUserBundle(),
 			new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
-			
+            new Musee\UserBundle\MuseeUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

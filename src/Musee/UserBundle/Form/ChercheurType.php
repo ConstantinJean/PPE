@@ -24,7 +24,7 @@ class ChercheurType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Musee\UserBundle\Entity\Chercheur'
+            'data_class' => 'Musee\UserBundle\Entity\User'
         ));
     }
 
