@@ -1,0 +1,22 @@
+{% extends "MuseeSiteBundle::layout.html.twig" %}
+
+{% block body %}
+
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="offset2 span8">
+				<br/>
+				<div class="hero-unit">
+				
+				<h1>Suppression</h1>
+				<hr/>
+				<p>Etes-vous vous sûre de vouloir supprimer cet utilisateur ?</p>
+				<br/>
+				<a href="{{path('musee_suppr_user', {'id' : id})}}" class="btn btn-danger btn-large">Supprimer <i class="icon-white icon-trash"></i></a>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

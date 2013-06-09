@@ -22,6 +22,26 @@ musee_confirm_inscription:
     pattern: /user/confirm/{token}
     defaults: { _controller: MuseeUserBundle:Registration:confirm }
 
+musee_modif_user_liste:
+    pattern: /user/modifListe/{page}
+    defaults: { _controller: MuseeUserBundle:Modif:modifListe }
+
+musee_modif_user:
+    pattern: /user/modifUser/{id}
+    defaults: { _controller: MuseeUserBundle:Modif:modifier }
+
+musee_suppr_user:
+    pattern: /user/supprUser/{id}
+    defaults: { _controller: MuseeUserBundle:Modif:supprimer }
+
+musee_suppr_user_confirm:
+    pattern: /user/supprConfirmUser/{id}
+    defaults: { _controller: MuseeUserBundle:Modif:supprConfirm }
+
+musee_suppr_user_liste:
+    pattern: /user/supprListe/{page}
+    defaults: { _controller: MuseeUserBundle:Modif:supprListe }
+
 login:
     pattern: /login
     defaults: { _controller: MuseeUserBundle:Security:login }
