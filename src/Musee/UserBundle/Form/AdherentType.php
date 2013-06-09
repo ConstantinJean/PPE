@@ -23,7 +23,7 @@ class AdherentType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Musee\UserBundle\Entity\Adherent'
+            'data_class' => 'Musee\UserBundle\Entity\User'
         ));
     }
 

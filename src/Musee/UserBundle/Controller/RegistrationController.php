@@ -5,9 +5,7 @@ namespace Musee\UserBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Musee\UserBundle\Entity\User;
 use Musee\UserBundle\Form\UserType;
-use Musee\UserBundle\Entity\Chercheur;
 use Musee\UserBundle\Form\ChercheurType;
-use Musee\UserBundle\Entity\Adherent;
 use Musee\UserBundle\Form\AdherentType;
 use Musee\UserBundle\UserBundleEvents;
 use Musee\UserBundle\Event\FormEvent;
@@ -34,6 +32,11 @@ class RegistrationController extends controller
 			$password = $encoder->encodePassword($user->getPassword(), $user->getSalt());
 			$user->setPassword($password);
 			$user->setUsername($user->getUsername());
+			$user->setRoles('ROLE_ADMIN');
+			$user->setAnneeAnciennete(NULL);
+			$user->setNomThese(NULL);
+			$user->setDomaineRecherche(NULL);
+			
 			
 			
 			if($form->isValid()) //verification du formulaire
@@ -56,7 +59,7 @@ class RegistrationController extends controller
 	public function registerAdherentAction()
 	{
 		$dispatcher = $this->get('event_dispatcher');
-		$user = new Adherent;
+		$user = new User;
 		$form = $this->createForm(new AdherentType, $user);
 		
 		$request = $this -> get('request');
@@ -71,6 +74,9 @@ class RegistrationController extends controller
 			$password = $encoder->encodePassword($user->getPassword(), $user->getSalt());
 			$user->setPassword($password);
 			$user->setUsername($user->getUsername());
+			$user->setRoles('ROLE_ADHERENT');
+			$user->setNomThese(NULL);
+			$user->setDomaineRecherche(NULL);
 			
 			
 			if($form->isValid()) //verification du formulaire
@@ -94,7 +100,7 @@ class RegistrationController extends controller
 	public function registerChercheurAction()
 	{
 		$dispatcher = $this->get('event_dispatcher');
-		$user = new Chercheur;
+		$user = new User;
 		$form = $this->createForm(new ChercheurType, $user);
 		
 		$request = $this -> get('request');
@@ -109,6 +115,8 @@ class RegistrationController extends controller
 			$password = $encoder->encodePassword($user->getPassword(), $user->getSalt());
 			$user->setPassword($password);
 			$user->setUsername($user->getUsername());
+			$user->setRoles('ROLE_CHERCHEUR');
+			$user->setAnneeAnciennete(NULL);
 			
 			
 			if($form->isValid()) //verification du formulaire
@@ -144,29 +152,6 @@ class RegistrationController extends controller
 				   ->findOneByConfirmationToken($token);
 		}
 		
-		//test pour adherent
-		elseif(null !== $this->getDoctrine()
-                   ->getManager()
-                   ->getRepository('MuseeUserBundle:Adherent')
-				   ->findOneByConfirmationToken($token))
-		{
-			$user = $this->getDoctrine()
-                   ->getManager()
-                   ->getRepository('MuseeUserBundle:Adherent')
-				   ->findOneByConfirmationToken($token);
-		}
-		
-		//test pour chercheur
-		elseif(null !== $this->getDoctrine()
-                   ->getManager()
-                   ->getRepository('MuseeUserBundle:Chercheur')
-				   ->findOneByConfirmationToken($token))
-		{
-			$user = $this->getDoctrine()
-                   ->getManager()
-                   ->getRepository('MuseeUserBundle:Chercheur')
-				   ->findOneByConfirmationToken($token);
-		}
 		
 		else
 		{

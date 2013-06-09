@@ -4,6 +4,7 @@ namespace Musee\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * User
@@ -35,6 +36,13 @@ class User implements UserInterface
      * @ORM\Column(name="email", type="string", length=255)
      */
     protected $email;
+	
+	 /**
+     * @var array
+     *
+     * @ORM\Column(name="roles", type="array")
+     */
+	 protected $roles;
 
     /**
      * @var string
@@ -64,11 +72,33 @@ class User implements UserInterface
 	 */
 	protected $confirmationToken;
 	
+	/**
+     * @var string
+     *
+     * @ORM\Column(name="NomThese", type="string", length=255, nullable=true)
+     */
+    private $NomThese;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="DomaineRecherche", type="string", length=255, nullable=true)
+     */
+    private $DomaineRecherche;
+	
+	/**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="AnneeAnciennete", type="date", nullable=true)
+     */
+    private $AnneeAnciennete;
+	
 	
 	public function __construct()
     {
         $this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
         $this->isActive = false;
+		$this->roles = new ArrayCollection();
     }
 
     /**
@@ -183,9 +213,16 @@ class User implements UserInterface
         return $this->isActive;
     }
 	
+	public function setRoles($role)
+	{
+		$this->roles->add($role);
+		
+		return $this;
+	}
+	
 	public function getRoles()
     {
-        return array('ROLE_ADMIN');
+        return $this->roles->toArray();
     }
 	
 	public function eraseCredentials()
@@ -227,4 +264,75 @@ class User implements UserInterface
     {
         return $this->confirmationToken;
     }
+	
+	/**
+     * Set NomThese
+     *
+     * @param string $nomThese
+     * @return Chercheur
+     */
+    public function setNomThese($nomThese)
+    {
+        $this->NomThese = $nomThese;
+    
+        return $this;
+    }
+
+    /**
+     * Get NomThese
+     *
+     * @return string 
+     */
+    public function getNomThese()
+    {
+        return $this->NomThese;
+    }
+
+    /**
+     * Set DomaineRecherche
+     *
+     * @param string $domaineRecherche
+     * @return Chercheur
+     */
+    public function setDomaineRecherche($domaineRecherche)
+    {
+        $this->DomaineRecherche = $domaineRecherche;
+    
+        return $this;
+    }
+
+    /**
+     * Get DomaineRecherche
+     *
+     * @return string 
+     */
+    public function getDomaineRecherche()
+    {
+        return $this->DomaineRecherche;
+    }
+	
+	
+	 /**
+     * Set AnneeAnciennete
+     *
+     * @param \DateTime $anneeAnciennete
+     * @return Adherent
+     */
+    public function setAnneeAnciennete($anneeAnciennete)
+    {
+        $this->AnneeAnciennete = $anneeAnciennete;
+    
+        return $this;
+    }
+	
+	/**
+     * Get AnneeAnciennete
+     *
+     * @return \DateTime 
+     */
+    public function getAnneeAnciennete()
+    {
+        return $this->AnneeAnciennete;
+    }
+	
 }
