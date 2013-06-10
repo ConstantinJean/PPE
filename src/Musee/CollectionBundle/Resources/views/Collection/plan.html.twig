@@ -14,11 +14,11 @@
 							<em>Cliquer sur une salle pour voir les objets qui y sont stockés :</em>
 						</p>
 					</div>
-					<p class="text-center">
+					<p class="text-center visible-desktop">
 					   <img src="{{ asset('style/Plandumusee.png') }}" usemap="#plan_du_musee" alt="Plan du musée"/>
 					</p>
 
-					<p>
+					<p class="visible-desktop">
 						<map name="plan_du_musee" id="plan_du_musee">
 							<area shape="rect" coords="348,0,422,50" href="{{ path('musee_collection_afficher_liste', {'page' : 1, 'idSalle' : 1}) }}" alt="Salle Mercure - Entrée"/>
 							<area shape="rect" coords="250,51,669,246" href="{{ path('musee_collection_afficher_liste', {'page' : 1, 'idSalle' : 2}) }}" alt="Salle Venus - Boutique"/>
@@ -31,6 +31,24 @@
 							<area shape="rect" coords="21,647,924,788" href="{{ path('musee_collection_afficher_liste', {'page' : 1, 'idSalle' : 9}) }}" alt="Salle Soleil - Réserve"/>
 						</map>
 					</p>
+				</div>
+				<div class="hidden-desktop">
+					<p class="text-center">
+					   <img src="{{ asset('style/Plandumusee.png') }}" alt="Plan du musée"/>
+					</p>
+					<div class="span4 well text-center">
+						<div class="btn-group btn-group-vertical">
+							   <a class="btn btn-inverse" href="{{ path('musee_collection_afficher_liste', {'page' : 1, 'idSalle' : 1}) }}">Salle Mercure - Entrée</option>
+							   <a class="btn btn-inverse" href="{{ path('musee_collection_afficher_liste', {'page' : 1, 'idSalle' : 2}) }}">Salle Venus - Boutique</option>
+							   <a class="btn btn-inverse" href="{{ path('musee_collection_afficher_liste', {'page' : 1, 'idSalle' : 3}) }}">Salle Terre</option>
+							   <a class="btn btn-inverse" href="{{ path('musee_collection_afficher_liste', {'page' : 1, 'idSalle' : 4}) }}">Salle Mars</option>
+							   <a class="btn btn-inverse" href="{{ path('musee_collection_afficher_liste', {'page' : 1, 'idSalle' : 5}) }}">Salle Jupiter</option>
+							   <a class="btn btn-inverse" href="{{ path('musee_collection_afficher_liste', {'page' : 1, 'idSalle' : 6}) }}">Salle Saturne</option>
+							   <a class="btn btn-inverse" href="{{ path('musee_collection_afficher_liste', {'page' : 1, 'idSalle' : 7}) }}">Salle Uranus</option>
+							   <a class="btn btn-inverse" href="{{ path('musee_collection_afficher_liste', {'page' : 1, 'idSalle' : 8}) }}">Salle Neptune</option>
+							   <a class="btn btn-inverse" href="{{ path('musee_collection_afficher_liste', {'page' : 1, 'idSalle' : 9}) }}">Salle Soleil - Réserve</option>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
