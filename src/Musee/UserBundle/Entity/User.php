@@ -3,7 +3,7 @@
 namespace Musee\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -12,7 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Musee\UserBundle\Entity\UserRepository")
  */
-class User implements UserInterface
+class User implements AdvancedUserInterface
 {
     /**
      * @var integer
@@ -334,5 +334,25 @@ class User implements UserInterface
     {
         return $this->AnneeAnciennete;
     }
+	
+	public function isAccountNonExpired()
+     {
+         return true;
+     }
+
+     public function isAccountNonLocked()
+     {
+         return true;
+     }
+
+     public function isCredentialsNonExpired()
+     {
+         return true;
+     }
+
+     public function isEnabled()
+     {
+         return $this->isActive;
+     }
 	
 }

@@ -5,7 +5,7 @@
 {% block body %}
 	<div class="container-fluid">	
 		<div class="row-fluid">
-			<div class="offset1 span8 well">
+			<div class="offset1 span7 well">
 				<div id="myCarousel" class="carousel slide">
 				  <div class="carousel-inner thumbnail">
 					<div class="item active"> <img alt="" src="{{ asset('style/hubble.jpg') }}"/>
@@ -28,13 +28,14 @@
 				  <a class="carousel-control right" data-slide="next" href="#myCarousel">›</a>
 				</div>
 			</div>
-			<div class="span3 well text-center">
+			<div class="span4 well text-center">
 				<div class="btn-group btn-group-vertical">
-					<a class="btn btn-primary btn-large" href="{{ path('musee_aPropos') }}">Tout savoir sur le<br /> Musée de l'espace de Kourou</a>
-					<a class="btn btn-warning btn-large" href="{{ path('musee_infosPratiques') }}">Infos pratiques</a>
-					<a class="btn btn-danger btn-large" href="{{ path('musee_contact') }}">Contactez-nous</a>
+					<a class="btn btn-primary" href="{{ path('musee_aPropos') }}">Tout savoir sur le<br /> Musée de l'espace de Kourou</a>
+					<a class="btn btn-warning " href="{{ path('musee_infosPratiques') }}">Infos pratiques</a>
+					<a class="btn btn-danger" href="{{ path('musee_contact') }}">Contactez-nous</a>
 				</div>
 			</div>
+			
 		</div>
 	</div>
 	{% for article in articles %}

@@ -19,7 +19,7 @@ musee_create_user_chercheur:
     defaults: { _controller: MuseeUserBundle:Registration:registerChercheur }
 
 musee_confirm_inscription:
-    pattern: /user/confirm/{token}
+    pattern: /confirmInscription/{token}
     defaults: { _controller: MuseeUserBundle:Registration:confirm }
 
 musee_modif_user_liste:
