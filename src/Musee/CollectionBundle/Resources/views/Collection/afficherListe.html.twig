@@ -3,6 +3,8 @@
 {% extends "::layout.html.twig" %}
 
 {% block body %}
+
+	{% if is_granted('ROLE_CHERCHEUR') %}
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="offset5 span2 well text-center">
@@ -10,6 +12,7 @@
 			</div>
 		</div>
 	</div>
+	{% endif %}
 	<div class="container-fluid">
 		{% for objet in objets %}
 			{% if loop.index is odd %}
@@ -33,8 +36,12 @@
 					</div>
 					<div class="pull-right">
 						<a class="btn btn-info" href="{{ path('musee_collection_afficher', {'id': objet.id}) }}">afficher</a>
+						{% if is_granted('ROLE_CHERCHEUR') %}
 						<a class="btn btn-success" href="{{ path('musee_collection_modifier', {'id': objet.id}) }}">Modifier</a>
+						{% endif %}
+						{% if is_granted('ROLE_ADMIN') %}
 						<a class="btn btn-danger" href="{{ path('musee_collection_supprimer', {'id': objet.id}) }}">Supprimer</a>
+						{% endif %}
 					</div>
 				</div>
 			
@@ -58,8 +65,12 @@
 					</div>
 					<div class="pull-right">
 						<a class="btn btn-info" href="{{ path('musee_collection_afficher', {'id': objet.id}) }}">afficher</a>
+						{% if is_granted('ROLE_CHERCHEUR') %}
 						<a class="btn btn-success" href="{{ path('musee_collection_modifier', {'id': objet.id}) }}">Modifier</a>
+						{% endif %}
+						{% if is_granted('ROLE_ADMIN') %}
 						<a class="btn btn-danger" href="{{ path('musee_collection_supprimer', {'id': objet.id}) }}">Supprimer</a>
+						{% endif %}
 					</div>					
 				</div>
 			</div>

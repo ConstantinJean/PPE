@@ -5,6 +5,7 @@ namespace Musee\CollectionBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Musee\CollectionBundle\Entity\Objet;
 use Musee\CollectionBundle\Form\ObjetType;
+use JMS\SecurityExtraBundle\Annotation\Secure;
 
 class CollectionController extends Controller
 {
@@ -23,6 +24,9 @@ class CollectionController extends Controller
 		));
 	}
 	
+	/**
+    * @Secure(roles="ROLE_CHERCHEUR")
+    */
 	public function ajouterObjetAction()
 	{
 		$objet = new Objet;
@@ -47,6 +51,9 @@ class CollectionController extends Controller
 		array('form' => $form->createView(),));
 	}
 	
+	/**
+    * @Secure(roles="ROLE_CHERCHEUR")
+    */
 	public function modifierObjetAction(Objet $objet)
 	{
 		$form = $this -> createForm(new ObjetType(), $objet);
@@ -71,6 +78,9 @@ class CollectionController extends Controller
 		'objet' => $objet));
 	}
 	
+	/**
+    * @Secure(roles="ROLE_ADMIN")
+    */
 	public function supprimerObjetAction(Objet $objet)
     {
 		// On crée un formulaire vide, qui ne contiendra que le champ CSRF
