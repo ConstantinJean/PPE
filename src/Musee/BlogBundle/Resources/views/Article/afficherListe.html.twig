@@ -2,7 +2,13 @@
 
 {% extends "::layout.html.twig" %}
 {% block body %}
-
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="offset5 span2 well">
+				<a class="btn btn-primary" href="{{ path('musee_blog_ajouter') }}">Ajouter un nouvel article</a>
+			</div>
+		</div>
+	</div>
 	{% for article in articles %}
 		<div class="container-fluid">
 			<div class="row-fluid">

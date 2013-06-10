@@ -3,7 +3,13 @@
 {% extends "::layout.html.twig" %}
 
 {% block body %}
-
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="offset5 span2 well">
+				<a class="btn btn-primary" href="{{ path('musee_collection_ajouter') }}">Ajouter un nouvel objet</a>
+			</div>
+		</div>
+	</div>
 	<div class="container-fluid">
 		{% for objet in objets %}
 			{% if loop.index is odd %}
