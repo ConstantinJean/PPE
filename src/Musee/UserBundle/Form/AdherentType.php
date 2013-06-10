@@ -11,12 +11,12 @@ class AdherentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', 'email')
+            ->add('email', 'email', array( 'label'  => 'Email',))
 			->add('password', 'repeated', array(
            'first_name' => 'password',
            'second_name' => 'confirm',
            'type' => 'password',))
-            ->add('AnneeAnciennete', 'date')
+            ->add('AnneeAnciennete', 'date', array( 'label'  => 'Année d\'inscription',))
         ;
     }
 

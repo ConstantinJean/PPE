@@ -11,13 +11,13 @@ class ChercheurType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', 'email')
+            ->add('email', 'email', array( 'label'  => 'Email',))
             ->add('password', 'repeated', array(
            'first_name' => 'password',
            'second_name' => 'confirm',
            'type' => 'password',))
-            ->add('NomThese', 'text')
-            ->add('DomaineRecherche', 'text')
+            ->add('NomThese', 'text', array( 'label'  => 'Nom de la thèse',))
+            ->add('DomaineRecherche', 'text', array( 'label'  => 'Domaine de recherche',))
         ;
     }
 
