@@ -57,6 +57,11 @@ class ModifController extends controller
 			
 			
 			$form->bind($request);
+			$factory = $this->get('security.encoder_factory');
+			$encoder = $factory -> getEncoder($user);
+			$password = $encoder->encodePassword($user->getPassword(), $user->getSalt());
+			$user->setPassword($password);
+			$user->setUsername($user->getUsername());
 			
 			
 			
@@ -112,6 +117,60 @@ class ModifController extends controller
 	{
 		return $this->render("MuseeUserBundle:User:supprConfirm.html.twig", array(
 		'id' => $id));
+	}
+	
+	public function editProfilAction()
+	{
+		$user = $this->get('security.context')->getToken()->getUser();
+		
+		$form;
+		
+		if(in_array('ROLE_ADMIN',$user->getRoles()))
+		{
+			$form = $this->createForm(new UserType, $user);
+			
+		}
+		
+		elseif(in_array('ROLE_ADHERENT',$user->getRoles()))
+		{
+			$form = $this->createForm(new AdherentType, $user);
+			
+		}
+		
+		elseif(in_array('ROLE_CHERCHEUR',$user->getRoles()))
+		{
+			$form = $this->createForm(new ChercheurType, $user);
+			
+		}
+		
+		$request = $this -> get('request');
+		if($request->getMethod() == 'POST')
+		{
+			
+			
+			$form->bind($request);
+			
+			$factory = $this->get('security.encoder_factory');
+			$encoder = $factory -> getEncoder($user);
+			$password = $encoder->encodePassword($user->getPassword(), $user->getSalt());
+			$user->setPassword($password);
+			$user->setUsername($user->getUsername());
+			
+			
+			
+			if($form->isValid()) //verification du formulaire
+			{
+				
+				
+				$em = $this->getDoctrine()->getManager();
+				$em->flush();
+				
+				return $this->redirect($this->generateUrl('musee_accueil'));
+			}
+		}
+		
+		return $this->render('MuseeUserBundle:User:editProfil.html.twig', array('form'=>$form->createView()));
+		
 	}
 	
 }

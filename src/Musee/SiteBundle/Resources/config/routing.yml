@@ -24,15 +24,7 @@ musee_mail:
     requirements:
         _method:  GET|POST
 
-musee_pageEnregistrementAdmin:
-    pattern:  /admin/register
-    defaults: { _controller: MuseeSiteBundle:Site:register }
-
-musee_pageListeModifUserAdmin:
-    pattern:  /admin/modifier/liste/{page}
-    defaults: { _controller: MuseeSiteBundle:Site:afficherModif }
-
-musee_pageListeSupprUserAdmin:
-    pattern:  /admin/supprimer/liste/{page}
-    defaults: { _controller: MuseeSiteBundle:Site:afficherSuppr }
+musee_profil:
+    pattern: /profil
+    defaults: { _controller: MuseeUserBundle:Modif:editProfil }
 

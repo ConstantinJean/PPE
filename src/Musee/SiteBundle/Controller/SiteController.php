@@ -74,20 +74,6 @@ class SiteController extends Controller
 		return $this->render('MuseeSiteBundle:Site:infosPratiques.html.twig');
 	}
 	
-	public function registerAction()
-	{
-		return $this -> redirect($this->generateUrl('musee_create_user_admin'));
-	}
-	
-	public function afficherModifAction($page)
-	{
-		return $this -> render('MuseeSiteBundle:Site:modif.html.twig', array('page' => $page,'route' => 'musee_pageListeModifUserAdmin'));
-	}
-	
-	public function afficherSupprAction($page)
-	{
-		return $this -> render('MuseeSiteBundle:Site:suppr.html.twig', array('page' => $page, 'route' => 'musee_pageListeSupprUserAdmin'));
-	}
 	
 	public function listeAction($page, $route)
 	{
