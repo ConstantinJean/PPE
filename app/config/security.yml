@@ -13,15 +13,19 @@ security:
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
-        
+        musee:
+            chain:
+                providers: [musee_user, in_memory]
+
         musee_user:
             entity: { class: MuseeUserBundle:User, property: username }
 
         in_memory:
             memory:
                 users:
-                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
-                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+                    chercheur@kourou.fr:  { password: kourou, roles: [ 'ROLE_USER' ] }
+                    admin@kourou.fr: { password: kourou, roles: [ 'ROLE_ADMIN' ] }
+                    adherent@kourou.fr: { password: kourou, roles: [ 'ROLE_ADHERENT' ] }
         
     firewalls:
 
@@ -30,7 +34,7 @@ security:
         secured_area:
             pattern:    ^/
             anonymous: ~
-            provider:  musee_user
+            provider:  musee
             form_login:
                 check_path: /login_check
                 login_path: /login
@@ -64,3 +68,4 @@ security:
         #- { path: ^/_internal/secure, roles: ROLE_NO_ACCESS }
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/user, roles: ROLE_ADMIN }
+        - { path: ^/profil, roles: IS_AUTHENTICATED_ANONYMOUSLY }
