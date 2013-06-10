@@ -164,7 +164,7 @@ class RegistrationController extends controller
 		$em = $this->getDoctrine()-> getManager();
 		$em -> flush();
 		
-		$this->get('session')->getFlashBag()->add('notice', 'Votre inscription est terminée. Veuillez vous connecter.');
+		$this->get('session')->getFlashBag()->add('notice', 'Votre inscription est terminÃ©e. Veuillez vous connecter.');
 		
 		return $this->redirect($this->generateUrl('login'));
 		
