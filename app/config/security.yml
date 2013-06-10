@@ -63,3 +63,4 @@ security:
         #- { path: ^/_internal/secure, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
         #- { path: ^/_internal/secure, roles: ROLE_NO_ACCESS }
         - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/user, roles: ROLE_ADMIN }
