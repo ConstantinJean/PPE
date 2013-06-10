@@ -45,6 +45,9 @@
 				<p>{{article.contenu|raw}}</p>
 				<p>{{article.auteur}}</p>
 				</div>
+				<div class="pull-right">
+						<a class="btn btn-info" href="{{ path('musee_blog_afficher', {'slug' : article.slug}) }}">Afficher l'article</a>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -70,6 +73,9 @@
 						{% endif %}	
 						</p>
 					</div>
+					<div class="pull-right">
+						<a class="btn btn-info" href="{{ path('musee_collection_afficher', {'id': objet.id}) }}">afficher</a>
+					</div>
 				</div>
 			
 			{% elseif loop.index is even %}
@@ -89,7 +95,11 @@
 							non
 						{% endif %}
 						</p>
-					</div>				
+						
+					</div>
+					<div class="pull-right">
+						<a class="btn btn-info" href="{{ path('musee_collection_afficher', {'id': objet.id}) }}">afficher</a>
+					</div>					
 				</div>
 			</div>
 			{% endif %}

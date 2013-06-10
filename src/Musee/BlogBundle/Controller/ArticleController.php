@@ -7,9 +7,13 @@ use Musee\BlogBundle\Entity\Article;
 use Musee\BlogBundle\Form\ArticleType;
 use Musee\BlogBundle\Form\CommentaireType;
 use Musee\BlogBundle\Entity\Commentaire;
+use JMS\SecurityExtraBundle\Annotation\Secure;
 
 class ArticleController extends Controller
 {
+	/**
+    * @Secure(roles="ROLE_CHERCHEUR")
+    */
 	public function ajouterArticleAction()
 	{
 		$article = new Article;
@@ -52,6 +56,9 @@ class ArticleController extends Controller
 		));
 	}
 	
+	/**
+    * @Secure(roles="ROLE_CHERCHEUR")
+    */
 	public function modifierArticleAction(Article $article)
 	{
 		$article -> setContenu(html_entity_decode($article-> getContenu()) ); 
@@ -77,6 +84,9 @@ class ArticleController extends Controller
 			));
 	}
 	
+	/**
+    * @Secure(roles="ROLE_ADMIN")
+    */
 	public function supprimerArticleAction(Article $article)
 	{
 		$form = $this -> createFormBuilder() -> getForm();

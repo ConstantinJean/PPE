@@ -21,8 +21,12 @@
 					{% endif %}</p>
 					</div>
 					<div class="pull-right">
+					{% if is_granted('ROLE_CHERCHEUR') %}
 						<a class="btn btn-success" href="{{ path('musee_blog_modifier', {'slug' : article.slug}) }}">Modifier</a>
+					{% endif %}
+					{% if is_granted('ROLE_ADMIN') %}
 						<a class="btn btn-danger" href="{{ path('musee_blog_supprimer', {'slug' : article.slug}) }}">Supprimer</a>
+					{% endif %}
 					</div>
 				</div>
 			</div>

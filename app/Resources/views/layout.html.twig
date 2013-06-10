@@ -30,8 +30,9 @@
 							<li><a href="{{ path('musee_aPropos') }}">À propos</a></li>
 							<li><a href="{{ path('musee_infosPratiques') }}">Infos pratiques</a></li>
 							<li><a href="{{ path('musee_contact') }}">Contact</a></li>
+							{% if is_granted('ROLE_ADMIN') %}
 							<li><a href="{{ path('musee_pageEnregistrementAdmin') }}">Admin</a></li>
-								
+							{% endif %}
 								
 						</ul>
 
