@@ -23,7 +23,7 @@ security:
         in_memory:
             memory:
                 users:
-                    chercheur@kourou.fr:  { password: kourou, roles: [ 'ROLE_USER' ] }
+                    chercheur@kourou.fr:  { password: kourou, roles: [ 'ROLE_CHERCHEUR' ] }
                     admin@kourou.fr: { password: kourou, roles: [ 'ROLE_ADMIN' ] }
                     adherent@kourou.fr: { password: kourou, roles: [ 'ROLE_ADHERENT' ] }
         
