@@ -31,7 +31,7 @@ class Mailer implements MailerInterface
     public function sendConfirmationEmailMessage(UserInterface $user)
     {
         $url = $this->router->generate('musee_confirm_inscription', array('token' => $user->getConfirmationToken()));
-		$confirmationUrl = 'http://localhost'.$url;
+		$confirmationUrl = 'http://83.156.181.93'.$url;
         $rendered = $this->templating->render('MuseeUserBundle:User:activationEmail.html.twig', array(
             'user' => $user,
             'confirmationUrl' => $confirmationUrl
